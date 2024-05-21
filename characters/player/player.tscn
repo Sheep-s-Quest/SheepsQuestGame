@@ -1,0 +1,65 @@
+[gd_scene load_steps=7 format=3 uid="uid://jyjuvgel177t"]
+
+[ext_resource type="Script" path="res://characters/player/player.gd" id="1_83tmx"]
+[ext_resource type="Texture2D" uid="uid://dhll2itbsrhp3" path="res://sprites/characters/Warrior_Blue.png" id="1_nkxk2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bwp6h"]
+size = Vector2(56, 60.25)
+
+[sub_resource type="Animation" id="Animation_kvdkt"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [5]
+}
+
+[sub_resource type="Animation" id="Animation_b5ek2"]
+resource_name = "move_right"
+length = 0.70001
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [6, 6, 7, 8, 9, 10, 11]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qu1fo"]
+_data = {
+"RESET": SubResource("Animation_kvdkt"),
+"move_right": SubResource("Animation_b5ek2")
+}
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_83tmx")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_nkxk2")
+hframes = 6
+vframes = 8
+frame = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 2.125)
+shape = SubResource("RectangleShape2D_bwp6h")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_qu1fo")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
