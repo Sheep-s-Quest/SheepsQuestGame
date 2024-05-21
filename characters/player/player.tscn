@@ -347,4 +347,4 @@ visible = false
 position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_l7h7c")
 
-[connection signal="animation_finished" from="AnimationTree" to="." method="_on_animation_tree_animation_finished"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
