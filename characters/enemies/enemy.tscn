@@ -22,3 +22,5 @@ root_node = NodePath("../..")
 [node name="EnemySensors" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnemySensors"]
+
+[node name="AttackCooldown" type="Timer" parent="."]

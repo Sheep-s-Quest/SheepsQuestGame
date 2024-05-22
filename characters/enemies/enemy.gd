@@ -12,3 +12,4 @@ enum ACTION_STATE {IDLE, WALK, ATTACK}
 
 @onready var hitbox: CollisionShape2D = $EnemyHitbox.get_node("CollisionShape2D")
 @onready var eyes_sensor: CollisionShape2D = $EnemySensors.get_node("CollisionShape2D")
+@onready var attack_cooldown: Timer = $AttackCooldown
