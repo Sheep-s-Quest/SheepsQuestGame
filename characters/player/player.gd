@@ -20,7 +20,7 @@ var _last_input_direction: Vector2 = Vector2(0.0, 0.0)
 func _ready():
 	attack_cooldown_timer.wait_time = attack_cooldown
 	animation_tree.animation_finished.connect(_on_animation_finished)
-	_last_input_direction = Vector2(1, 1)
+	_last_input_direction = Vector2(1, 0)
 
 func _physics_process(delta: float) -> void:
 	if action_state == ACTION_STATE.ATTACK:
@@ -28,27 +28,27 @@ func _physics_process(delta: float) -> void:
 		return
 		
 	var input_direction: Vector2 = _get_input_direction().normalized()
-	
 	_update_last_input_direction(input_direction)
-	_update_action_state(input_direction)
 	_update_look_direction(input_direction)
+	_update_action_state(input_direction)
 	_pick_animation_state()
 	
 	velocity = input_direction * move_speed
 	move_and_slide()
 
 func _update_last_input_direction(input_direction: Vector2) -> void:
-	if input_direction != Vector2.ZERO:
-		if input_direction.x == 0.0:
-			if abs(_last_input_direction.x) > 0.1:
-				_last_input_direction.x *= 0.1
-			_last_input_direction.y = input_direction.y
-		elif input_direction.y == 0.0:
-			_last_input_direction.x = input_direction.x
-			if abs(_last_input_direction.y) > 0.1:
-				_last_input_direction.y *= 0.1
-		else:
-			_last_input_direction = input_direction
+	if input_direction == Vector2.ZERO:
+		return
+	if input_direction.x == 0.0:
+		if abs(_last_input_direction.x) > 0.1:
+			_last_input_direction.x *= 0.1
+		_last_input_direction.y = input_direction.y
+	elif input_direction.y == 0.0:
+		_last_input_direction.x = input_direction.x
+		if abs(_last_input_direction.y) > 0.1:
+			_last_input_direction.y *= 0.1
+	else:
+		_last_input_direction = input_direction
 
 func _get_input_direction() -> Vector2:
 	var move_x = Input.get_action_strength("right") - Input.get_action_strength("left")
@@ -81,13 +81,11 @@ func _pick_animation_state() -> void:
 	if action_state == ACTION_STATE.ATTACK:
 		animation_tree.set("parameters/Attack1/blend_position", _last_input_direction)
 		animation_state.travel("Attack1")
-
 		return
 		
 	if (velocity != Vector2.ZERO):
 		animation_tree.set("parameters/Walk/blend_position", _last_input_direction)
 		animation_state.travel("Walk")
-		sprite.flip_h = true
 	else:
 		animation_tree.set("parameters/Idle/blend_position", _last_input_direction)
 		animation_state.travel("Idle")

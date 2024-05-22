@@ -505,6 +505,7 @@ script = ExtResource("1_83tmx")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_nkxk2")
+flip_h = true
 hframes = 6
 vframes = 8
 frame = 5
@@ -522,7 +523,7 @@ tree_root = SubResource("AnimationNodeStateMachine_ahc68")
 anim_player = NodePath("../AnimationPlayer")
 parameters/Attack1/blend_position = Vector2(0, 0)
 parameters/Attack2/blend_position = Vector2(0, 0)
-parameters/Idle/blend_position = Vector2(0, 0)
+parameters/Idle/blend_position = Vector2(-0.00272977, 0.024229)
 parameters/Walk/blend_position = Vector2(0, 0)
 
 [node name="PlayerHitbox" type="Area2D" parent="."]
