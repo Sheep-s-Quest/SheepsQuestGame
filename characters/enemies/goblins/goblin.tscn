@@ -234,19 +234,27 @@ script = ExtResource("1_e2piu")
 [node name="EnemyHitbox" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyHitbox"]
-position = Vector2(1, 0)
+z_index = 99
+y_sort_enabled = true
+position = Vector2(0, -24)
 shape = SubResource("CircleShape2D_mwe4f")
 
 [node name="DetectionArea" type="Area2D" parent="."]
 collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
+z_index = 99
+y_sort_enabled = true
+position = Vector2(0, -24)
 shape = SubResource("CircleShape2D_2or1n")
 
 [node name="AttackCooldown" type="Timer" parent="."]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 99
+y_sort_enabled = true
 texture = ExtResource("2_lws1a")
+offset = Vector2(0, -30)
 hframes = 7
 vframes = 5
 frame = 2
@@ -257,7 +265,9 @@ libraries = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 17)
+z_index = 99
+y_sort_enabled = true
+position = Vector2(1, -15)
 shape = SubResource("CircleShape2D_tao0g")
 
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]

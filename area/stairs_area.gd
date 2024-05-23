@@ -24,11 +24,11 @@ func _process(delta):
 	pass
 
 
-func _on_area_2d_enter_body_exited(body):
+func _on_area_2d_enter_body_exited(_body):
 	_set_layer_collision(true, false, player_z_index)
 
 
-func _on_area_2d_exit_body_exited(body):
+func _on_area_2d_exit_body_exited(_body):
 	_set_layer_collision(false, true, player_next_z_index)
 	
 

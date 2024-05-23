@@ -22,7 +22,7 @@ func _ready():
 	animation_tree.animation_finished.connect(_on_animation_finished)
 	_last_input_direction = Vector2(1, 0)
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if action_state == ACTION_STATE.ATTACK:
 		await animation_tree.animation_finished
 		return
