@@ -73,4 +73,4 @@ func _update_look_direction(move_input: Vector2) -> void:
 func _on_animation_finished(anim_name: StringName) -> void:
 	print("Animation finished: ", anim_name)
 	if anim_name.begins_with("attack"):
-		action_state = ACTION_STATE.IDLE
+		action_state = ACTION_STATE.IDLE	

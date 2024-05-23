@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://bqcnem818odfe"]
+
+[ext_resource type="Script" path="res://area/stairs_area.gd" id="1_wtu3u"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6e6b2"]
+size = Vector2(126.156, 28)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j7nhl"]
+size = Vector2(126, 28)
+
+[node name="StairsArea" type="Node2D"]
+z_index = 1
+script = ExtResource("1_wtu3u")
+
+[node name="Area2DExit" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2DExit"]
+position = Vector2(0, -14)
+shape = SubResource("RectangleShape2D_6e6b2")
+
+[node name="Area2DEnter" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2DEnter"]
+position = Vector2(0, 14)
+shape = SubResource("RectangleShape2D_j7nhl")
+
+[connection signal="body_entered" from="Area2DExit" to="." method="_on_area_2d_exit_body_entered"]
+[connection signal="body_exited" from="Area2DExit" to="." method="_on_area_2d_exit_body_exited"]
+[connection signal="mouse_shape_exited" from="Area2DExit" to="." method="_on_area_2d_exit_mouse_shape_exited"]
+[connection signal="body_entered" from="Area2DEnter" to="." method="_on_area_2d_enter_body_entered"]
+[connection signal="body_exited" from="Area2DEnter" to="." method="_on_area_2d_enter_body_exited"]
