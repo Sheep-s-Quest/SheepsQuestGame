@@ -319,11 +319,14 @@ y_sort_enabled = true
 script = ExtResource("1_83tmx")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 1
+y_sort_enabled = true
 texture = ExtResource("1_nkxk2")
 offset = Vector2(0, -30)
 hframes = 6
 vframes = 8
 frame = 5
+region_rect = Rect2(-25, 45, 550, 750)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_bwp6h")
