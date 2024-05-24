@@ -251,7 +251,7 @@ shape = SubResource("CircleShape2D_2or1n")
 [node name="AttackCooldown" type="Timer" parent="."]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-z_index = 99
+z_index = 1
 y_sort_enabled = true
 texture = ExtResource("2_lws1a")
 offset = Vector2(0, -30)

@@ -27,8 +27,6 @@ func _physics_process(_delta) -> void:
 		_current_state = ACTION_STATE.WALK
 		_update_look_direction_to_point(direction)
 		
-		print("Current look direction: ", LOOK_DIRECTION.keys()[_look_direction])
-		
 		move_and_slide()
 	else:
 		_current_state = ACTION_STATE.IDLE
