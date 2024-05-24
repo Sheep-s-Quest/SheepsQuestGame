@@ -72,12 +72,14 @@ func _play_animation() -> void:
 					animation_player.play("attack_flipped_h")
 
 
-func _on_detection_area_body_entered(body):
-	if body.name == "Player":
-		_player = body
+func _on_detection_area_area_entered(area):
+	if area.get_parent().name == "Player":
+		print("Entered")
+		_player = area.get_parent()
 		_in_chase = true
 
-func _on_detection_area_body_exited(body):
-	if body.name == "Player":
+func _on_detection_area_area_exited(area):
+	if area.get_parent().name == "Player":
+		print("Exited")
 		_player = null
 		_in_chase = false

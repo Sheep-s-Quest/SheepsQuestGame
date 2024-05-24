@@ -504,6 +504,7 @@ size = Vector2(58, 60)
 radius = 33.0
 
 [node name="Player" type="CharacterBody2D"]
+z_index = 1
 script = ExtResource("1_83tmx")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -546,6 +547,7 @@ shape = SubResource("RectangleShape2D_l7h7c")
 [node name="AttackCooldown" type="Timer" parent="."]
 
 [node name="DetectionArea" type="Area2D" parent="."]
+z_index = 99
 collision_layer = 16777216
 
 [node name="DetectionBox" type="CollisionShape2D" parent="DetectionArea"]

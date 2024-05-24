@@ -230,10 +230,10 @@ radius = 20.0
 
 [node name="Goblin" type="CharacterBody2D"]
 z_index = 1
-y_sort_enabled = true
 script = ExtResource("1_e2piu")
 
 [node name="EnemyHitbox" type="Area2D" parent="."]
+z_index = 99
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyHitbox"]
 z_index = 99
@@ -242,6 +242,7 @@ position = Vector2(0, -24)
 shape = SubResource("CircleShape2D_mwe4f")
 
 [node name="DetectionArea" type="Area2D" parent="."]
+z_index = 99
 collision_layer = 16777216
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
@@ -272,5 +273,5 @@ y_sort_enabled = true
 position = Vector2(1, -15)
 shape = SubResource("CircleShape2D_tao0g")
 
-[connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
-[connection signal="body_exited" from="DetectionArea" to="." method="_on_detection_area_body_exited"]
+[connection signal="area_entered" from="DetectionArea" to="." method="_on_detection_area_area_entered"]
+[connection signal="area_exited" from="DetectionArea" to="." method="_on_detection_area_area_exited"]
