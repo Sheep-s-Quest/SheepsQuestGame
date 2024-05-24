@@ -13,12 +13,16 @@ z_index = 99
 script = ExtResource("1_wtu3u")
 
 [node name="Area2DExit" type="Area2D" parent="."]
+collision_layer = 7
+collision_mask = 7
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2DExit"]
 position = Vector2(0, -9)
 shape = SubResource("RectangleShape2D_6e6b2")
 
 [node name="Area2DEnter" type="Area2D" parent="."]
+collision_layer = 7
+collision_mask = 7
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2DEnter"]
 position = Vector2(0, 9)
