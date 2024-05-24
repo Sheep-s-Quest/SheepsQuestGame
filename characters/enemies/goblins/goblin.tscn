@@ -229,6 +229,8 @@ _data = {
 radius = 20.0
 
 [node name="Goblin" type="CharacterBody2D"]
+z_index = 1
+y_sort_enabled = true
 script = ExtResource("1_e2piu")
 
 [node name="EnemyHitbox" type="Area2D" parent="."]
@@ -240,7 +242,7 @@ position = Vector2(0, -24)
 shape = SubResource("CircleShape2D_mwe4f")
 
 [node name="DetectionArea" type="Area2D" parent="."]
-collision_layer = 2
+collision_layer = 16777216
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
 z_index = 99

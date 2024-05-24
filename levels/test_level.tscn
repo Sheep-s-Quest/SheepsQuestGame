@@ -1,4 +1,4 @@
-[gd_scene load_steps=68 format=3 uid="uid://ckiccqk0x5lb3"]
+[gd_scene load_steps=69 format=3 uid="uid://ckiccqk0x5lb3"]
 
 [ext_resource type="PackedScene" uid="uid://jyjuvgel177t" path="res://characters/player/player.tscn" id="1_6coc8"]
 [ext_resource type="Texture2D" uid="uid://dds41c603bxxp" path="res://sprites/world/tilesets/ground/Tilemap_Flat.png" id="2_vmkgw"]
@@ -34,6 +34,7 @@
 [ext_resource type="Texture2D" uid="uid://ch0qef8lj0jl5" path="res://sprites/world/resources/Sheep/HappySheep_All.png" id="27_666pq"]
 [ext_resource type="Texture2D" uid="uid://drtw6syww2xwr" path="res://sprites/world/tilesets/Collision.png" id="29_fachk"]
 [ext_resource type="Script" path="res://levels/tile_map.gd" id="32_um5m5"]
+[ext_resource type="PackedScene" uid="uid://cwcdmtqr0acs8" path="res://characters/enemies/goblins/goblin.tscn" id="36_yeltw"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ku7id"]
 texture = ExtResource("2_vmkgw")
@@ -14293,3 +14294,7 @@ player_z_index = 2
 player_next_z_index = 3
 physics_layer = 2
 physics_next_layer = 3
+
+[node name="Goblin" parent="." instance=ExtResource("36_yeltw")]
+position = Vector2(432, 567)
+move_speed = 100.0
