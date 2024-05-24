@@ -3,6 +3,7 @@ extends CharacterBody2D
 enum LOOK_DIRECTION {LEFT, RIGHT, UP, DOWN}
 enum ACTION_STATE {IDLE, WALK, ATTACK}
 
+@export var hit_points: float = 300.0
 @export var move_speed: float = 300.0
 @export var current_direction: LOOK_DIRECTION = LOOK_DIRECTION.RIGHT
 @export var action_state: ACTION_STATE = ACTION_STATE.IDLE
@@ -16,6 +17,9 @@ enum ACTION_STATE {IDLE, WALK, ATTACK}
 
 var _is_attack_possible: bool = true
 var _last_input_direction: Vector2 = Vector2(0.0, 0.0)
+
+func take_damage(damage: float) -> void:
+	print("Damage hit: ", damage)
 
 func _ready():
 	attack_cooldown_timer.wait_time = attack_cooldown

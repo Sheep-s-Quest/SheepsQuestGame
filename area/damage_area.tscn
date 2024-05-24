@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://c6vqcm3k4h3ob"]
+
+[ext_resource type="Script" path="res://area/damage_area.gd" id="1_gqmjm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4wwac"]
+size = Vector2(33, 33)
+
+[node name="DamageArea" type="Area2D"]
+script = ExtResource("1_gqmjm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_4wwac")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
