@@ -5,22 +5,55 @@ enum ACTION_STATE {IDLE, WALK, ATTACK}
 
 @export var hit_points: float = 300.0
 @export var move_speed: float = 300.0
+@export var melee_damage: float = 10.0
 @export var current_direction: LOOK_DIRECTION = LOOK_DIRECTION.RIGHT
 @export var action_state: ACTION_STATE = ACTION_STATE.IDLE
 @export var attack_cooldown: float = 0.6
+@export var sprite_offset_y: float = -30
+@export var attack_size: Vector2 = Vector2(100, 20)
+@export var attack_offset: float = attack_size.y
 
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var animation_state: AnimationNodeStateMachinePlayback = animation_tree.get("parameters/playback")
 @onready var attack_cooldown_timer: Timer = $AttackCooldown
+@onready var player_hitbox: CollisionShape2D = $PlayerHitbox/CollisionShape2D
+
+var attack_area_scene = preload("res://area/damage_area.tscn")
 
 var _is_attack_possible: bool = true
 var _last_input_direction: Vector2 = Vector2(0.0, 0.0)
+var _attack_area: Area2D = null
 
 func take_damage(damage: float) -> void:
 	print("Damage hit: ", damage)
 
+func attack():
+	attack_cooldown_timer.start()
+	_attack_area = attack_area_scene.instantiate()
+	_attack_area.size = attack_size	
+	_attack_area.damage = melee_damage
+	
+	var offset: Vector2 = Vector2.ZERO
+	var hitbox_size = player_hitbox.shape.extents * 2
+
+	match current_direction:
+		LOOK_DIRECTION.LEFT:
+			offset = Vector2(-(hitbox_size.x / 2 + attack_offset), sprite_offset_y)
+			_attack_area.size = Vector2(attack_size.y, attack_size.x)
+		LOOK_DIRECTION.RIGHT:
+			offset = Vector2(hitbox_size.x / 2 + attack_offset, sprite_offset_y)
+			_attack_area.size = Vector2(attack_size.y, attack_size.x)
+		LOOK_DIRECTION.UP:
+			offset = Vector2(0, -(hitbox_size.y / 2 + attack_offset) + sprite_offset_y)
+		LOOK_DIRECTION.DOWN:
+			offset = Vector2(0, hitbox_size.y / 2 + attack_offset + sprite_offset_y)
+	
+	_attack_area.position = position + offset
+	get_parent().add_child(_attack_area)
+	
+	
 func _ready():
 	attack_cooldown_timer.wait_time = attack_cooldown
 	animation_tree.animation_finished.connect(_on_animation_finished)
@@ -32,12 +65,13 @@ func _physics_process(_delta: float) -> void:
 		return
 		
 	var input_direction: Vector2 = _get_input_direction().normalized()
+	velocity = input_direction * move_speed
+	
 	_update_last_input_direction(input_direction)
 	_update_look_direction(input_direction)
 	_update_action_state(input_direction)
 	_pick_animation_state()
 	
-	velocity = input_direction * move_speed
 	move_and_slide()
 
 func _update_last_input_direction(input_direction: Vector2) -> void:
@@ -62,7 +96,7 @@ func _get_input_direction() -> Vector2:
 func _update_action_state(input_direction: Vector2) -> void:
 	if Input.is_action_just_pressed("attack") and _is_attack_possible:
 		action_state = ACTION_STATE.ATTACK
-		attack_cooldown_timer.start()
+		attack()
 		return
 	if input_direction != Vector2.ZERO:
 		action_state = ACTION_STATE.WALK
@@ -101,3 +135,4 @@ func _on_animation_finished(anim_name: StringName) -> void:
 func _on_attack_cooldown_timeout():
 	_is_attack_possible = true
 	action_state = ACTION_STATE.IDLE
+	get_parent().remove_child(_attack_area)
