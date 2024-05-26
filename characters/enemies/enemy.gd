@@ -19,7 +19,7 @@ var _in_chase: bool = false
 var _is_attack_possible: bool = false
 
 func _ready():
-	detection_area.e
+	pass
 
 func _on_detection_area_area_entered(area):
 	if area.get_parent().name == "Player":
