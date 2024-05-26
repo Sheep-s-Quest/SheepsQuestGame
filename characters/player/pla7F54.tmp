@@ -510,6 +510,13 @@ radius = 16.2788
 [node name="Player" type="CharacterBody2D"]
 z_index = 1
 script = ExtResource("1_83tmx")
+action_state = null
+attack_cooldown = null
+attack_size = null
+current_direction = null
+sprite_offset_y = null
+move_speed = null
+melee_damage = null
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = 1

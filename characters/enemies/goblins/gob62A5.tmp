@@ -231,6 +231,8 @@ radius = 12.0416
 [node name="Goblin" type="CharacterBody2D"]
 z_index = 1
 script = ExtResource("1_e2piu")
+move_speed = null
+is_alive = null
 
 [node name="EnemyHitbox" type="Area2D" parent="."]
 z_index = 99

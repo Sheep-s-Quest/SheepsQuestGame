@@ -19,8 +19,8 @@ var _player: CharacterBody2D = null
 var _in_chase: bool = false
 var _is_attack_possible: bool = false
 
-func take_damage(damage: float) -> void:
-	print(self.name, ": Damage hit: ", damage)
+func take_damage(damage: float, direction: Vector2) -> void:
+	print(self.name, ": Damage hit: ", damage, " Direction: ", direction)
 
 func _physics_process(_delta) -> void:
 	if _in_chase and _player and is_alive:

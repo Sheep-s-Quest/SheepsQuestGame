@@ -3,76 +3,72 @@ extends CharacterBody2D
 enum LOOK_DIRECTION {LEFT, RIGHT, UP, DOWN}
 enum ACTION_STATE {IDLE, WALK, ATTACK}
 
-@export var hit_points: float = 300.0
-@export var move_speed: float = 300.0
-@export var melee_damage: float = 10.0
-@export var current_direction: LOOK_DIRECTION = LOOK_DIRECTION.RIGHT
 @export var action_state: ACTION_STATE = ACTION_STATE.IDLE
-@export var attack_cooldown: float = 0.6
-@export var sprite_offset_y: float = -30
-@export var attack_size: Vector2 = Vector2(100, 20)
-@export var attack_offset: float = attack_size.y
+@export var attack_offset: float = 25.0
+@export var current_direction: LOOK_DIRECTION = LOOK_DIRECTION.RIGHT
+@export var sprite_offset_y: float = -30.0
+@export var move_speed: float = 300.0
+
+var _last_input_direction: Vector2 = Vector2(0.0, 0.0)
 
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var animation_state: AnimationNodeStateMachinePlayback = animation_tree.get("parameters/playback")
-@onready var attack_cooldown_timer: Timer = $AttackCooldown
-@onready var player_hitbox: CollisionShape2D = $PlayerHitbox/CollisionShape2D
+@onready var hitbox: CircleShape2D = $HitboxComponent/CollisionShape2D.get_shape()
+@onready var health_component: HealthComponent = $HealthComponent
+@onready var attack_component: AttackComponent = $AttackComponent
 
-var attack_area_scene = preload("res://area/damage_area.tscn")
-
-var _is_attack_possible: bool = true
-var _last_input_direction: Vector2 = Vector2(0.0, 0.0)
-var _attack_area: Area2D = null
-
-func take_damage(damage: float) -> void:
-	print("Damage hit: ", damage)
-
-func attack():
-	attack_cooldown_timer.start()
-	_attack_area = attack_area_scene.instantiate()
-	_attack_area.size = attack_size	
-	_attack_area.damage = melee_damage
-	
-	var offset: Vector2 = Vector2.ZERO
-	var hitbox_size = player_hitbox.shape.extents * 2
-
-	match current_direction:
-		LOOK_DIRECTION.LEFT:
-			offset = Vector2(-(hitbox_size.x / 2 + attack_offset), sprite_offset_y)
-			_attack_area.size = Vector2(attack_size.y, attack_size.x)
-		LOOK_DIRECTION.RIGHT:
-			offset = Vector2(hitbox_size.x / 2 + attack_offset, sprite_offset_y)
-			_attack_area.size = Vector2(attack_size.y, attack_size.x)
-		LOOK_DIRECTION.UP:
-			offset = Vector2(0, -(hitbox_size.y / 2 + attack_offset) + sprite_offset_y)
-		LOOK_DIRECTION.DOWN:
-			offset = Vector2(0, hitbox_size.y / 2 + attack_offset + sprite_offset_y)
-	
-	_attack_area.position = position + offset
-	get_parent().add_child(_attack_area)
-	
-	
 func _ready():
-	attack_cooldown_timer.wait_time = attack_cooldown
-	animation_tree.animation_finished.connect(_on_animation_finished)
+	health_component.damaged.connect(_on_damaged)
+	attack_component.attack_overed.connect(_on_attack_overed)
 	_last_input_direction = Vector2(1, 0)
 
 func _physics_process(_delta: float) -> void:
 	if action_state == ACTION_STATE.ATTACK:
-		await animation_tree.animation_finished
 		return
 		
 	var input_direction: Vector2 = _get_input_direction().normalized()
 	velocity = input_direction * move_speed
 	
+	move_and_slide()
 	_update_last_input_direction(input_direction)
 	_update_look_direction(input_direction)
 	_update_action_state(input_direction)
 	_pick_animation_state()
 	
-	move_and_slide()
+
+func take_damage(damage: float, direction: Vector2) -> void:
+	health_component.take_damage(damage, direction)
+	apply_bounce(damage, direction)
+
+func die() -> void:
+	health_component.die()
+
+func attack():
+	var offset: Vector2 = Vector2.ZERO
+	
+	var hitbox_size: Vector2 = Vector2(hitbox.radius * 2, hitbox.radius * 2)
+	var size = Vector2(75, 40)
+	match current_direction:
+		LOOK_DIRECTION.LEFT:
+			offset = Vector2(-(hitbox_size.x / 2 + attack_offset), sprite_offset_y)
+			size = Vector2(size.y, size.x)
+		LOOK_DIRECTION.RIGHT:
+			offset = Vector2(hitbox_size.x / 2 + attack_offset, sprite_offset_y)
+			size = Vector2(size.y, size.x)
+		LOOK_DIRECTION.UP:
+			offset = Vector2(0, -(hitbox_size.y / 2 + attack_offset) + sprite_offset_y)
+		LOOK_DIRECTION.DOWN:
+			offset = Vector2(0, hitbox_size.y / 2 + attack_offset + sprite_offset_y)
+	var attack_position = health_component.position + offset
+	attack_component.attack(attack_position, size)
+	
+
+func apply_bounce(bounce_force: float, direction: Vector2) -> void:
+	var impulse = direction * bounce_force
+	move_and_collide(impulse)
+	
 
 func _update_last_input_direction(input_direction: Vector2) -> void:
 	if input_direction == Vector2.ZERO:
@@ -94,7 +90,7 @@ func _get_input_direction() -> Vector2:
 	return Vector2(move_x, move_y)
 
 func _update_action_state(input_direction: Vector2) -> void:
-	if Input.is_action_just_pressed("attack") and _is_attack_possible:
+	if Input.is_action_just_pressed("attack") && attack_component.is_attack_possible:
 		action_state = ACTION_STATE.ATTACK
 		attack()
 		return
@@ -128,11 +124,14 @@ func _pick_animation_state() -> void:
 		animation_tree.set("parameters/Idle/blend_position", _last_input_direction)
 		animation_state.travel("Idle")
 
-
-func _on_animation_finished(anim_name: StringName) -> void:
-	print("Animation finished: ", anim_name)
-
-func _on_attack_cooldown_timeout():
-	_is_attack_possible = true
+func _on_attack_overed():
 	action_state = ACTION_STATE.IDLE
-	get_parent().remove_child(_attack_area)
+
+func _on_damaged(damage: float, direction: Vector2) -> void:
+	print("Player took damage: ", damage, " from direction: ", direction)
+	if health_component.hit_points <= 0:
+		die()
+	
+func _on_player_died() -> void:
+	print("Player died")
+	queue_free()

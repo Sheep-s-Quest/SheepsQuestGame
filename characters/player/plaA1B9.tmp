@@ -1,11 +1,10 @@
-[gd_scene load_steps=60 format=3 uid="uid://jyjuvgel177t"]
+[gd_scene load_steps=59 format=3 uid="uid://jyjuvgel177t"]
 
 [ext_resource type="Script" path="res://characters/player/player.gd" id="1_83tmx"]
 [ext_resource type="Texture2D" uid="uid://dhll2itbsrhp3" path="res://sprites/characters/Warrior_Blue.png" id="1_nkxk2"]
-[ext_resource type="PackedScene" uid="uid://cl4wkaeoe2nj6" path="res://characters/components/health_component.tscn" id="3_b5hnn"]
-[ext_resource type="PackedScene" uid="uid://ohusb04dggx7" path="res://characters/components/hitbox_component.tscn" id="4_bcvvo"]
-[ext_resource type="PackedScene" uid="uid://bwrxcbrwgj8ym" path="res://characters/components/detection_component.tscn" id="5_33ccx"]
-[ext_resource type="PackedScene" uid="uid://coagu8sx2pner" path="res://characters/components/attack_component.tscn" id="6_yy7vp"]
+[ext_resource type="PackedScene" uid="uid://cl4wkaeoe2nj6" path="res://characters/health_component.tscn" id="3_uy6j8"]
+[ext_resource type="PackedScene" uid="uid://ohusb04dggx7" path="res://characters/hitbox_component.tscn" id="4_hgths"]
+[ext_resource type="PackedScene" uid="uid://bwrxcbrwgj8ym" path="res://characters/DetectionComponent.tscn" id="5_egmem"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rxw80"]
 radius = 12.1655
@@ -521,6 +520,7 @@ vframes = 8
 frame = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 z_index = 99
 position = Vector2(0, -10)
 shape = SubResource("CircleShape2D_rxw80")
@@ -538,27 +538,23 @@ parameters/Attack2/blend_position = Vector2(0, 0)
 parameters/Idle/blend_position = Vector2(-0.00272977, 0.024229)
 parameters/Walk/blend_position = Vector2(0, 0)
 
-[node name="HealthComponent" parent="." instance=ExtResource("3_b5hnn")]
+[node name="AttackCooldown" type="Timer" parent="."]
+
+[node name="HealthComponent" parent="." instance=ExtResource("3_uy6j8")]
 max_hit_points = 300.0
 hit_points = 300.0
 
-[node name="HitboxComponent" parent="." instance=ExtResource("4_bcvvo")]
-z_index = 1
-y_sort_enabled = true
-collision_layer = 16777216
+[node name="HitboxComponent" parent="." instance=ExtResource("4_hgths")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+visible = false
 position = Vector2(0, -27)
 shape = SubResource("CircleShape2D_x6fnk")
 
-[node name="DelectionComponent" parent="." instance=ExtResource("5_33ccx")]
+[node name="DelectionComponent" parent="." instance=ExtResource("5_egmem")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DelectionComponent"]
-z_index = 1
-y_sort_enabled = true
 position = Vector2(0, -14)
 shape = SubResource("CircleShape2D_a6nno")
 
-[node name="AttackComponent" parent="." instance=ExtResource("6_yy7vp")]
-z_index = 1
-y_sort_enabled = true
+[connection signal="timeout" from="AttackCooldown" to="." method="_on_attack_cooldown_timeout"]

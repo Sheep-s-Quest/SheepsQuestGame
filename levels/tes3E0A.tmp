@@ -34,7 +34,7 @@
 [ext_resource type="Texture2D" uid="uid://ch0qef8lj0jl5" path="res://sprites/world/resources/Sheep/HappySheep_All.png" id="27_666pq"]
 [ext_resource type="Texture2D" uid="uid://drtw6syww2xwr" path="res://sprites/world/tilesets/Collision.png" id="29_fachk"]
 [ext_resource type="Script" path="res://levels/tile_map.gd" id="32_um5m5"]
-[ext_resource type="PackedScene" uid="uid://cwcdmtqr0acs8" path="res://characters/enemies/goblins/goblin.tscn" id="35_8ncij"]
+[ext_resource type="PackedScene" uid="uid://cwcdmtqr0acs8" path="res://characters/enemies/enemy.tscn" id="35_8ncij"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ku7id"]
 texture = ExtResource("2_vmkgw")
@@ -14228,6 +14228,15 @@ y_sort_enabled = true
 
 [node name="Player" parent="." instance=ExtResource("1_6coc8")]
 position = Vector2(435, 619)
+action_state = null
+attack_cooldown = null
+attack_size = null
+bounce_force = null
+current_direction = null
+sprite_offset_y = null
+move_speed = null
+melee_damage = null
+hit_points = null
 
 [node name="TileMap" type="TileMap" parent="."]
 z_index = 1
@@ -14295,5 +14304,4 @@ physics_layer = 2
 physics_next_layer = 3
 
 [node name="Goblin" parent="." instance=ExtResource("35_8ncij")]
-position = Vector2(119, 87)
-is_alive = false
+position = Vector2(55, 284)
