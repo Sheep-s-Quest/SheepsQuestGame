@@ -16,10 +16,12 @@ var _look_direction: LOOK_DIRECTION = LOOK_DIRECTION.RIGHT
 @onready var attack_component: AttackComponent = $AttackComponent
 @onready var velocity_component: VelocityComponent = $VelocityComponent
 
-func _ready():
+
+func _init_health_system() -> void:
 	health_component.damaged.connect(_on_damaged)
+
+func _init_attack_system() -> void:
 	attack_component.attack_overed.connect(_on_attack_overed)
-	_last_input_direction = Vector2.RIGHT
 
 func attack():
 	var offset: Vector2 = Vector2.ZERO	

@@ -8,16 +8,28 @@ var in_chase: bool = false
 
 @onready var detection_area_component: Area2D = $DetectionAreaComponent
 
-func _ready() -> void:
+func _init_detection_area() -> void:
 	detection_area_component.area_entered.connect(_on_detection_area_area_entered)
 	detection_area_component.area_exited.connect(_on_detection_area_area_exited)
 
-func _on_detection_area_area_entered(area):
+func _update_look_direction_to_point(point: Vector2) -> void:
+	if point.y < -0.5:
+		_look_direction = LOOK_DIRECTION.UP
+	elif point.y > 0.5:
+		_look_direction = LOOK_DIRECTION.DOWN
+	elif point.x < 0:
+		_look_direction = LOOK_DIRECTION.LEFT
+		_is_sprite_flipped_h = false
+	else:
+		_look_direction = LOOK_DIRECTION.RIGHT
+		_is_sprite_flipped_h = true
+
+func _on_detection_area_area_entered(area) -> void:
 	if area.get_parent().name == "Player":
 		player = area.get_parent()
 		in_chase = true
 
-func _on_detection_area_area_exited(area):
+func _on_detection_area_area_exited(area) -> void:
 	if area.get_parent().name == "Player":
 		player = null
 		in_chase = false

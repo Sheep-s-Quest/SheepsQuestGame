@@ -14296,4 +14296,3 @@ physics_next_layer = 3
 
 [node name="Goblin" parent="." instance=ExtResource("35_8ncij")]
 position = Vector2(119, 87)
-is_alive = false
