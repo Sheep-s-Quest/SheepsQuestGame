@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://jyjuvgel177t"]
+[gd_scene load_steps=25 format=3 uid="uid://jyjuvgel177t"]
 
 [ext_resource type="Script" path="res://characters/player/player.gd" id="1_83tmx"]
 [ext_resource type="Texture2D" uid="uid://dhll2itbsrhp3" path="res://sprites/characters/Warrior_Blue.png" id="1_nkxk2"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://ohusb04dggx7" path="res://characters/components/hitbox_component.tscn" id="4_bcvvo"]
 [ext_resource type="PackedScene" uid="uid://bwrxcbrwgj8ym" path="res://characters/components/detection_component.tscn" id="5_33ccx"]
 [ext_resource type="PackedScene" uid="uid://coagu8sx2pner" path="res://characters/components/attack_component.tscn" id="6_yy7vp"]
+[ext_resource type="PackedScene" uid="uid://b7iw2osuqd3c0" path="res://characters/components/velocity_component.tscn" id="7_nd1wj"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rxw80"]
 radius = 12.1655
@@ -370,7 +371,6 @@ hit_points = 300.0
 [node name="HitboxComponent" parent="." instance=ExtResource("4_bcvvo")]
 z_index = 1
 y_sort_enabled = true
-collision_layer = 128
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
 position = Vector2(0, -27)
@@ -384,6 +384,10 @@ y_sort_enabled = true
 position = Vector2(0, -14)
 shape = SubResource("CircleShape2D_a6nno")
 
-[node name="AttackComponent" parent="." instance=ExtResource("6_yy7vp")]
+[node name="AttackComponent" parent="." node_paths=PackedStringArray("attack_emmiter") instance=ExtResource("6_yy7vp")]
 z_index = 1
 y_sort_enabled = true
+attack_emmiter = NodePath("..")
+
+[node name="VelocityComponent" parent="." node_paths=PackedStringArray("moveable") instance=ExtResource("7_nd1wj")]
+moveable = NodePath("..")

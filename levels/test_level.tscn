@@ -14227,7 +14227,7 @@ sources/10 = SubResource("TileSetAtlasSource_il31u")
 y_sort_enabled = true
 
 [node name="Player" parent="." instance=ExtResource("1_6coc8")]
-position = Vector2(435, 619)
+position = Vector2(207, 295)
 
 [node name="TileMap" type="TileMap" parent="."]
 z_index = 1

@@ -9,7 +9,7 @@ signal damage_hit(target, direction: Vector2)
 var size: Vector2 = Vector2(100, 100)
 
 @onready var collision_shape = $CollisionShape2D
-	
+
 func set_shape_size(size: Vector2) -> void:
 	collision_shape.shape.size = size
 

@@ -235,6 +235,7 @@ script = ExtResource("1_e2piu")
 [node name="EnemyHitbox" type="Area2D" parent="."]
 z_index = 99
 collision_layer = 128
+collision_mask = 128
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyHitbox"]
 z_index = 99
@@ -245,6 +246,7 @@ shape = SubResource("CircleShape2D_mwe4f")
 [node name="DetectionArea" type="Area2D" parent="."]
 z_index = 99
 collision_layer = 16777216
+collision_mask = 16777216
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
 z_index = 99

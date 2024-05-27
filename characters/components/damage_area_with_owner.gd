@@ -4,7 +4,7 @@ extends DamageArea
 var area_owner = null
 
 func _ready():
-	self.area_entered.connect(_on_body_entered)
+	self.body_entered.connect(_on_body_entered)
 
 func _on_body_entered(body) -> void:
 	if "take_damage" in body and body != area_owner:
