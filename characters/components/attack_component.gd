@@ -30,16 +30,14 @@ func attack_with_size(attack_position: Vector2, size: Vector2 = self.attack_area
 		is_attack_possible = false
 		attack_livetime.start()
 		_attack_area = _damage_area_scene.instantiate()
-		add_child(_attack_area)
 		_attack_area.area_owner = attack_emmiter
 		_attack_area.position = attack_position
 		_attack_area.size = size
 		_attack_area.damage = damage
-		
-		_attack_area.set_shape_size(size)
+		add_child(_attack_area)
 
 func calculate_attack_range() -> float:
-	return max(attack_area_size.x, attack_area_size.y) / 2
+	return max(attack_area_size.x, attack_area_size.y) / 1.5
 
 func _on_attack_livetime_ended() -> void:
 	if _attack_area != null:

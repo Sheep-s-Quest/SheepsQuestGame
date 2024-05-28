@@ -269,10 +269,12 @@ shape = SubResource("CircleShape2D_3neig")
 
 [node name="HealthComponent" parent="." instance=ExtResource("5_6f2b3")]
 
-[node name="AttackComponent" parent="." instance=ExtResource("6_sxaqw")]
+[node name="AttackComponent" parent="." node_paths=PackedStringArray("attack_emmiter") instance=ExtResource("6_sxaqw")]
 z_index = 1
 y_sort_enabled = true
 position = Vector2(0, -30)
+attack_emmiter = NodePath("..")
+damage = 10.0
 
 [node name="DetectionAreaComponent" parent="." instance=ExtResource("7_1076q")]
 z_index = 1

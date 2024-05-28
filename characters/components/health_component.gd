@@ -19,7 +19,5 @@ func restore_hitpoints(amount: float) -> void:
 			hit_points += amount
 
 func die() -> void:
-	print("Component indicated death")
 	died.emit()
-	queue_free()
 

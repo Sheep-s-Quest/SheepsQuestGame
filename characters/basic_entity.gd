@@ -16,15 +16,15 @@ var _look_direction: LOOK_DIRECTION = LOOK_DIRECTION.RIGHT
 @onready var attack_component: AttackComponent = $AttackComponent
 @onready var velocity_component: VelocityComponent = $VelocityComponent
 
-
 func _init_health_system() -> void:
 	health_component.damaged.connect(_on_damaged)
+	health_component.died.connect(_on_died)
 
 func _init_attack_system() -> void:
 	attack_component.attack_overed.connect(_on_attack_overed)
-
+	
 func attack():
-	var offset: Vector2 = Vector2.ZERO	
+	var offset: Vector2 = Vector2.ZERO
 	var hitbox_size: Vector2 = Vector2(hitbox.radius * 2, hitbox.radius * 2)
 	var flip_attack_hitbox: bool = false
 	match _look_direction:
@@ -43,14 +43,15 @@ func attack():
 
 func take_damage(damage: float, direction: Vector2) -> void:
 	health_component.take_damage(damage, direction)
-	velocity_component.apply_bounce(damage, direction)
-
-func die() -> void:
-	health_component.die()
+	velocity_component.apply_bounce(damage * 0.001, direction)
 
 func _on_attack_overed():
 	_current_state = ACTION_STATE.IDLE
 
 func _on_damaged(damage: float, direction: Vector2) -> void:
 	print(self.name, " took damage: ", damage, " from direction: ", direction, " current HP: ", health_component.hit_points)
-	
+	if health_component.hit_points <= 0:
+		health_component.die()
+
+func _on_died() -> void:
+	queue_free()
