@@ -231,7 +231,7 @@ radius = 12.0416
 radius = 31.0161
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ou1dh"]
-radius = 144.125
+radius = 248.002
 
 [node name="Goblin" type="CharacterBody2D"]
 z_index = 1
@@ -260,6 +260,7 @@ shape = SubResource("CircleShape2D_tao0g")
 [node name="VelocityComponent" parent="." node_paths=PackedStringArray("moveable") instance=ExtResource("3_n4i6f")]
 move_speed = 150.0
 moveable = NodePath("..")
+impulse_k = 0.2
 
 [node name="HitboxComponent" parent="." instance=ExtResource("4_cxkck")]
 
@@ -275,6 +276,9 @@ y_sort_enabled = true
 position = Vector2(0, -30)
 attack_emmiter = NodePath("..")
 damage = 10.0
+attack_livetime = 0.6
+attack_cooldown = 3.0
+time_before_attack_creatioon = 0.3
 
 [node name="DetectionAreaComponent" parent="." instance=ExtResource("7_1076q")]
 z_index = 1

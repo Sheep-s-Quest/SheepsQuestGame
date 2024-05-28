@@ -16,6 +16,7 @@ var _look_direction: LOOK_DIRECTION = LOOK_DIRECTION.RIGHT
 @onready var attack_component: AttackComponent = $AttackComponent
 @onready var velocity_component: VelocityComponent = $VelocityComponent
 
+
 func _init_health_system() -> void:
 	health_component.damaged.connect(_on_damaged)
 	health_component.died.connect(_on_died)
@@ -43,7 +44,7 @@ func attack():
 
 func take_damage(damage: float, direction: Vector2) -> void:
 	health_component.take_damage(damage, direction)
-	velocity_component.apply_bounce(damage * 0.001, direction)
+	velocity_component.apply_bounce(damage, direction)
 
 func _on_attack_overed():
 	_current_state = ACTION_STATE.IDLE

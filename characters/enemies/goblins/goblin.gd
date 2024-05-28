@@ -19,8 +19,11 @@ func _physics_process(_delta) -> void:
 			velocity_component.move(direction)
 			_current_state = ACTION_STATE.WALK
 		else:
-			_current_state = ACTION_STATE.ATTACK
-			attack()
+			if attack_component.is_attack_possible:
+				_current_state = ACTION_STATE.ATTACK
+				attack()
+			else:
+				_current_state = ACTION_STATE.IDLE
 	else:
 		_current_state = ACTION_STATE.IDLE
 	

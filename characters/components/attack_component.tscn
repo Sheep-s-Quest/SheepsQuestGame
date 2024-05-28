@@ -5,4 +5,8 @@
 [node name="AttackComponent" type="Node2D"]
 script = ExtResource("1_2ytwp")
 
-[node name="AttackTimer" type="Timer" parent="."]
+[node name="AttackLivetimeTimer" type="Timer" parent="."]
+
+[node name="AttackCooldownTimer" type="Timer" parent="."]
+
+[node name="AttackCreationTimer" type="Timer" parent="."]

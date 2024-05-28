@@ -4,7 +4,7 @@ extends Node2D
 @export var move_speed: float = 300.0
 @export var moveable: CharacterBody2D = null
 @export var impulse: Vector2 = Vector2.ZERO
-@export var impulse_k: float = 0.9
+@export var impulse_k: float = 0.01
 
 func move(direction: Vector2) -> void:
 	moveable.velocity = direction * move_speed
@@ -14,7 +14,7 @@ func move(direction: Vector2) -> void:
 		impulse *= impulse_k
 
 func apply_bounce(bounce_force: float, direction: Vector2) -> void:
-	impulse += direction * bounce_force
+	impulse = direction * bounce_force * impulse_k
 	moveable.move_and_collide(impulse)
 
 func get_input_direction() -> Vector2:
