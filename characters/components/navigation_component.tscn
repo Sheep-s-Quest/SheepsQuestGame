@@ -5,8 +5,3 @@
 [node name="NavigationComponent" type="NavigationAgent2D"]
 debug_enabled = true
 script = ExtResource("1_u04ww")
-
-[node name="NavigationTimer" type="Timer" parent="."]
-wait_time = 0.1
-
-[connection signal="timeout" from="NavigationTimer" to="." method="_on_navigation_timer_timeout"]

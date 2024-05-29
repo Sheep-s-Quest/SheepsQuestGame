@@ -374,10 +374,10 @@ hit_points = 300.0
 position = Vector2(0, -27)
 shape = SubResource("CircleShape2D_x6fnk")
 
-[node name="DelectionComponent" parent="." instance=ExtResource("5_33ccx")]
+[node name="DetectionComponent" parent="." instance=ExtResource("5_33ccx")]
 collision_mask = 16777216
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DelectionComponent"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionComponent"]
 z_index = 1
 y_sort_enabled = true
 position = Vector2(0, -14)
@@ -393,3 +393,5 @@ attack_cooldown = 0.5
 
 [node name="VelocityComponent" parent="." node_paths=PackedStringArray("moveable") instance=ExtResource("7_nd1wj")]
 moveable = NodePath("..")
+
+[node name="Camera2D" type="Camera2D" parent="."]

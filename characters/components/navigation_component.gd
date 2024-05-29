@@ -3,7 +3,7 @@ extends NavigationAgent2D
 
 signal target_far()
 
-@export var max_distance_to_target = 600
+@export var max_distance_to_target = 400
 
 var main_target: Node2D
 
@@ -13,7 +13,6 @@ var main_target: Node2D
 
 func set_target(target: Node2D, enemy: Node2D):
 	var is_target_can_reached = target._layer_position == enemy._layer_position
-	print("target: ", target, " is reachable: ", is_target_can_reached, " id ", get_navigation_map())
 	if(target != null and is_target_can_reached):
 		main_target = target
 		_set_navigation_target(main_target)
@@ -36,12 +35,10 @@ func _ready():
 
 func _set_navigation_target(target: Node2D):
 	var position = target.global_position
-	print("tester: ", target.name, " ", target.name.contains("StairsArea"))
 	if target.name.contains("StairsArea"):
 		position = Vector2(position.x, position.y - 50)
 	target_position = position
 
 
 func _used_stairs(stairs_area: StairsArea):
-	print("emmit ", stairs_area.name)
 	_set_navigation_target(stairs_area)

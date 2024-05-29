@@ -27,7 +27,7 @@ func _update_look_direction_to_point(point: Vector2) -> void:
 		_is_sprite_flipped_h = true
 
 func _on_detection_area_area_entered(area) -> void:
-	if area.get_parent().name == "Player":
+	if area.get_parent().is_in_group("Player"):
 		player = area.get_parent()
 		in_chase = true
 
