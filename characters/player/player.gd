@@ -1,11 +1,15 @@
 class_name Player
 extends BasicEntity
 
+@onready var health_bar : TextureProgressBar = $PlayerHP/HpBar
+
 func _ready():
 	_init_health_system()
 	_init_attack_system()
+	_init_hp_bar()
 
 func _physics_process(_delta: float) -> void:
+	_update_health_bar()
 	if _current_state == ACTION_STATE.ATTACK:
 		return
 		
@@ -61,3 +65,11 @@ func _play_animation() -> void:
 					animation_player.play("attack_1")
 				LOOK_DIRECTION.LEFT:
 					animation_player.play("attack_1_flipped_h")
+
+
+func _init_hp_bar() -> void:
+	health_bar.max_value = health_component.max_hit_points
+	health_bar.value = health_component.max_hit_points
+
+func _update_health_bar() -> void:
+	health_bar.value = health_component.hit_points
