@@ -5,11 +5,9 @@ func _ready():
 	_init_detection_area()
 	_init_health_system()
 	_init_attack_system()
-	_init_hp_bar()
 
 
 func _physics_process(_delta) -> void:
-	_update_health_bar()
 	if _current_state == ACTION_STATE.ATTACK:
 		return
 	

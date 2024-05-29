@@ -5,13 +5,13 @@
 
 [node name="PlayerHUD" type="CanvasLayer"]
 
-[node name="HpBar" type="TextureProgressBar" parent="."]
-self_modulate = Color(0.890196, 0.937255, 0.752941, 0.878431)
+[node name="HPBar" type="TextureProgressBar" parent="."]
+self_modulate = Color(0.890196, 0.937255, 0.752941, 0.670588)
 z_index = 1
-offset_left = 13.0
-offset_top = 12.0
-offset_right = 261.0
-offset_bottom = 40.0
+offset_left = 16.0
+offset_top = 14.0
+offset_right = 258.0
+offset_bottom = 38.0
 max_value = 300.0
 value = 300.0
 nine_patch_stretch = true

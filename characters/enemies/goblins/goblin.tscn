@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://cwcdmtqr0acs8"]
+[gd_scene load_steps=22 format=3 uid="uid://cwcdmtqr0acs8"]
 
 [ext_resource type="Script" path="res://characters/enemies/goblins/goblin.gd" id="1_e2piu"]
 [ext_resource type="Texture2D" uid="uid://so54xn6dm44p" path="res://sprites/enemies/goblins/Torch_Red.png" id="2_lws1a"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://coagu8sx2pner" path="res://characters/components/attack_component.tscn" id="6_sxaqw"]
 [ext_resource type="PackedScene" uid="uid://dhnk4lheff3t4" path="res://characters/components/detection_area_component.tscn" id="7_1076q"]
 [ext_resource type="PackedScene" uid="uid://ch7o0a0pxkwpn" path="res://ui/hpbars/mobhpbar/mob_hp_bar.tscn" id="8_mxjl7"]
+[ext_resource type="Script" path="res://ui/hpbars/mobhpbar/mob_hp_bar.gd" id="9_v11eo"]
 
 [sub_resource type="Animation" id="Animation_mbbtw"]
 resource_name = "attack"
@@ -294,3 +295,4 @@ shape = SubResource("CircleShape2D_ou1dh")
 z_index = 1
 position = Vector2(0, -87)
 scale = Vector2(0.3, 0.3)
+script = ExtResource("9_v11eo")
