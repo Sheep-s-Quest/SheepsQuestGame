@@ -341,7 +341,7 @@ radius = 34.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_a6nno"]
 radius = 16.2788
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
 z_index = 1
 script = ExtResource("1_83tmx")
 

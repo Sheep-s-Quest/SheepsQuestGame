@@ -3,11 +3,13 @@ extends CharacterBody2D
 
 enum LOOK_DIRECTION {LEFT, RIGHT, UP, DOWN}
 enum ACTION_STATE {IDLE, WALK, ATTACK}
+enum LAYER_POSITION {FIRST_LAYER, SECOND_LAYER, THIRD_LAYER}
 
 var _last_input_direction: Vector2 = Vector2.ZERO
 var _is_sprite_flipped_h: bool = false
 var _current_state: ACTION_STATE = ACTION_STATE.IDLE
 var _look_direction: LOOK_DIRECTION = LOOK_DIRECTION.RIGHT
+var _layer_position: LAYER_POSITION = LAYER_POSITION.FIRST_LAYER
 
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
@@ -45,6 +47,9 @@ func attack():
 func take_damage(damage: float, direction: Vector2) -> void:
 	health_component.take_damage(damage, direction)
 	velocity_component.apply_bounce(damage, direction)
+
+func set_layer_position(layer: LAYER_POSITION):
+	_layer_position = layer
 
 func _on_attack_overed():
 	_current_state = ACTION_STATE.IDLE

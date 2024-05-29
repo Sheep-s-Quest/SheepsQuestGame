@@ -12,7 +12,8 @@ func _physics_process(_delta) -> void:
 		return
 	
 	if in_chase and player and is_alive:
-		var direction = (player.position - position).normalized()
+		navigation.set_target(player, self)
+		var direction = to_local(navigation.get_navigation_path()).normalized()
 		_update_look_direction_to_point(direction)
 		
 		if position.distance_to(player.position) >= attack_component.calculate_attack_range():
@@ -24,6 +25,7 @@ func _physics_process(_delta) -> void:
 				attack()
 			else:
 				_current_state = ACTION_STATE.IDLE
+		navigation.check_distance()
 	else:
 		_current_state = ACTION_STATE.IDLE
 	

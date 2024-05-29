@@ -47,7 +47,7 @@ func attack_with_size(attack_position: Vector2, size: Vector2 = self.attack_area
 		attack_creation_timer.start()
 		attack_livetime_timer.start()
 		attack_cooldown_timer.start()
-			
+
 func calculate_attack_range() -> float:
 	return max(attack_area_size.x, attack_area_size.y) / 1.5
 		
