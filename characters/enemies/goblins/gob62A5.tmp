@@ -1,12 +1,13 @@
-[gd_scene load_steps=20 format=3 uid="uid://cwcdmtqr0acs8"]
+[gd_scene load_steps=15 format=3 uid="uid://cwcdmtqr0acs8"]
 
 [ext_resource type="Script" path="res://characters/enemies/goblins/goblin.gd" id="1_e2piu"]
 [ext_resource type="Texture2D" uid="uid://so54xn6dm44p" path="res://sprites/enemies/goblins/Torch_Red.png" id="2_lws1a"]
-[ext_resource type="PackedScene" uid="uid://b7iw2osuqd3c0" path="res://characters/components/velocity_component.tscn" id="3_n4i6f"]
-[ext_resource type="PackedScene" uid="uid://ohusb04dggx7" path="res://characters/components/hitbox_component.tscn" id="4_cxkck"]
-[ext_resource type="PackedScene" uid="uid://cl4wkaeoe2nj6" path="res://characters/components/health_component.tscn" id="5_6f2b3"]
-[ext_resource type="PackedScene" uid="uid://coagu8sx2pner" path="res://characters/components/attack_component.tscn" id="6_sxaqw"]
-[ext_resource type="PackedScene" uid="uid://dhnk4lheff3t4" path="res://characters/components/detection_area_component.tscn" id="7_1076q"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mwe4f"]
+radius = 33.0151
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2or1n"]
+radius = 149.013
 
 [sub_resource type="Animation" id="Animation_mbbtw"]
 resource_name = "attack"
@@ -227,15 +228,32 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_tao0g"]
 radius = 12.0416
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_3neig"]
-radius = 31.0161
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_ou1dh"]
-radius = 248.002
-
 [node name="Goblin" type="CharacterBody2D"]
 z_index = 1
 script = ExtResource("1_e2piu")
+move_speed = null
+is_alive = null
+
+[node name="EnemyHitbox" type="Area2D" parent="."]
+z_index = 99
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyHitbox"]
+z_index = 99
+y_sort_enabled = true
+position = Vector2(0, -24)
+shape = SubResource("CircleShape2D_mwe4f")
+
+[node name="DetectionArea" type="Area2D" parent="."]
+z_index = 99
+collision_layer = 16777216
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
+z_index = 99
+y_sort_enabled = true
+position = Vector2(0, -24)
+shape = SubResource("CircleShape2D_2or1n")
+
+[node name="AttackCooldown" type="Timer" parent="."]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = 1
@@ -244,7 +262,7 @@ texture = ExtResource("2_lws1a")
 offset = Vector2(0, -30)
 hframes = 7
 vframes = 5
-frame = 14
+frame = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -257,34 +275,5 @@ y_sort_enabled = true
 position = Vector2(0, -7)
 shape = SubResource("CircleShape2D_tao0g")
 
-[node name="VelocityComponent" parent="." node_paths=PackedStringArray("moveable") instance=ExtResource("3_n4i6f")]
-move_speed = 150.0
-moveable = NodePath("..")
-impulse_k = 0.2
-
-[node name="HitboxComponent" parent="." instance=ExtResource("4_cxkck")]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
-position = Vector2(0, -25)
-shape = SubResource("CircleShape2D_3neig")
-
-[node name="HealthComponent" parent="." instance=ExtResource("5_6f2b3")]
-
-[node name="AttackComponent" parent="." node_paths=PackedStringArray("attack_emmiter") instance=ExtResource("6_sxaqw")]
-z_index = 1
-y_sort_enabled = true
-position = Vector2(0, -30)
-attack_emmiter = NodePath("..")
-damage = 10.0
-attack_livetime = 0.6
-attack_cooldown = 3.0
-time_before_attack_creatioon = 0.3
-
-[node name="DetectionAreaComponent" parent="." instance=ExtResource("7_1076q")]
-z_index = 1
-y_sort_enabled = true
-collision_mask = 16777216
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionAreaComponent"]
-position = Vector2(0, -30)
-shape = SubResource("CircleShape2D_ou1dh")
+[connection signal="area_entered" from="DetectionArea" to="." method="_on_detection_area_area_entered"]
+[connection signal="area_exited" from="DetectionArea" to="." method="_on_detection_area_area_exited"]
