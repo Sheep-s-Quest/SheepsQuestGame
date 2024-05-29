@@ -3,6 +3,7 @@ extends CharacterBody2D
 enum LOOK_DIRECTION {LEFT, RIGHT, UP, DOWN}
 enum ACTION_STATE {IDLE, WALK, ATTACK}
 
+@export var player: CharacterBody2D = null
 @export var move_speed: float = 200.0
 @export var is_alive: bool = true
 
@@ -11,20 +12,20 @@ enum ACTION_STATE {IDLE, WALK, ATTACK}
 @onready var hitbox: CollisionShape2D = $EnemyHitbox/CollisionShape2D
 @onready var detection_area: CollisionShape2D = $DetectionArea/CollisionShape2D
 @onready var attack_cooldown: Timer = $AttackCooldown
+@onready var nav: NavigationAgent2D = $NavigationAgent2D
 
 var _current_state: ACTION_STATE = ACTION_STATE.IDLE
 var _look_direction: LOOK_DIRECTION = LOOK_DIRECTION.LEFT
 var _look_direction_x: bool = true
-var _player: CharacterBody2D = null
-var _in_chase: bool = false
+var _in_chase: bool = true
 var _is_attack_possible: bool = false
 
 func take_damage(damage: float) -> void:
 	print(self.name, ": Damage hit: ", damage)
 
 func _physics_process(_delta) -> void:
-	if _in_chase and _player and is_alive:
-		var direction = (_player.position - position).normalized()
+	if _in_chase and player and is_alive:
+		var direction = to_local(nav.get_next_path_position()).normalized()
 		velocity = direction * move_speed
 		
 		_current_state = ACTION_STATE.WALK
@@ -72,14 +73,21 @@ func _play_animation() -> void:
 					animation_player.play("attack_flipped_h")
 
 
-func _on_detection_area_area_entered(area):
-	if area.get_parent().name == "Player":
-		print("Entered")
-		_player = area.get_parent()
-		_in_chase = true
+func _makepath():
+	nav.target_position = player.global_position
 
-func _on_detection_area_area_exited(area):
-	if area.get_parent().name == "Player":
-		print("Exited")
-		_player = null
-		_in_chase = false
+
+func _on_pathfinding_timer_timeout():
+	_makepath()
+
+#func _on_detection_area_area_entered(area):
+	#if area.get_parent().name == "Player":
+		#print("Entered")
+		#_player = area.get_parent()
+		#_in_chase = true
+#
+#func _on_detection_area_area_exited(area):
+	#if area.get_parent().name == "Player":
+		#print("Exited")
+		#_player = null
+		#_in_chase = false
