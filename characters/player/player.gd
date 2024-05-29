@@ -32,7 +32,6 @@ func _handle_block_state() -> void:
 		if prev_look_direction != _look_direction:
 			_play_animation()
 	else:
-		_is_blockong = false
 		_current_state = ACTION_STATE.IDLE
 
 func _update_current_state(input_direction: Vector2) -> void:
