@@ -393,3 +393,9 @@ attack_cooldown = 0.5
 
 [node name="VelocityComponent" parent="." node_paths=PackedStringArray("moveable") instance=ExtResource("7_nd1wj")]
 moveable = NodePath("..")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+limit_left = -127
+limit_top = -188
+limit_right = 1473
+limit_bottom = 835

@@ -14295,4 +14295,13 @@ physics_layer = 2
 physics_next_layer = 3
 
 [node name="Goblin" parent="." instance=ExtResource("35_8ncij")]
-position = Vector2(119, 87)
+position = Vector2(114, 58)
+
+[node name="Goblin2" parent="." instance=ExtResource("35_8ncij")]
+position = Vector2(705, 611)
+
+[node name="LeftDown" type="Marker2D" parent="."]
+position = Vector2(-127, 835)
+
+[node name="RightUp" type="Marker2D" parent="."]
+position = Vector2(1473, -188)

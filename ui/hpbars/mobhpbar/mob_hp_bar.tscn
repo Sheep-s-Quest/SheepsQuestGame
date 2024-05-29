@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://ch7o0a0pxkwpn"]
+
+[ext_resource type="Texture2D" uid="uid://symw6krnlnpq" path="res://sprites/enemies/hpbar/mob_healt_empty.png" id="1_udut2"]
+[ext_resource type="Texture2D" uid="uid://dw0cej35dfyqj" path="res://sprites/enemies/hpbar/mob_healt_progress.png" id="2_t17qy"]
+
+[node name="MobHpBar" type="Node2D"]
+
+[node name="HPBar" type="TextureProgressBar" parent="."]
+self_modulate = Color(1, 1, 1, 0.678431)
+offset_left = -120.0
+offset_top = -21.0
+offset_right = 120.0
+offset_bottom = 19.0
+nine_patch_stretch = true
+texture_under = ExtResource("1_udut2")
+texture_progress = ExtResource("2_t17qy")
+tint_progress = Color(0.856269, 0.125958, 4.81307e-07, 1)
