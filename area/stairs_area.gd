@@ -41,11 +41,12 @@ func _setting_all_layer(body, layer_position, nav_layer, is_active, is_next_acti
 
 func _setting_hitbox_area(body, is_active, is_next_active):
 	var hitbox_area: Area2D = body.get_node("HitboxComponent")
-	var hitbox_area_position = body._base_damage_layer + (body._layer_position - 1)
-	hitbox_area.set_collision_layer_value(hitbox_area_position - 1, is_active)
-	hitbox_area.set_collision_mask_value(hitbox_area_position - 1, is_active)
-	hitbox_area.set_collision_layer_value(hitbox_area_position, is_next_active)
-	hitbox_area.set_collision_mask_value(hitbox_area_position, is_next_active)
+	var hitbox_area_from_position = body._base_damage_layer + (from_layer - 1)
+	var hitbox_area_to_position = body._base_damage_layer + (to_layer - 1)
+	hitbox_area.set_collision_layer_value(hitbox_area_from_position, is_active)
+	hitbox_area.set_collision_mask_value(hitbox_area_from_position, is_active)
+	hitbox_area.set_collision_layer_value(hitbox_area_to_position, is_next_active)
+	hitbox_area.set_collision_mask_value(hitbox_area_to_position, is_next_active)
 
 func _setting_detection_area(body, is_active, is_next_active):
 	var detection_area: Area2D
