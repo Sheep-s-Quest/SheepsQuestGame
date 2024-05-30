@@ -42,13 +42,14 @@ func attack():
 	attack_component.attack(attack_position, flip_attack_hitbox)
 
 func take_damage(damage: float, direction: Vector2) -> void:
+	velocity_component.apply_bounce(damage, direction)
 	if _current_state == ACTION_STATE.BLOCK:
 		var valid_block_direction = vector_to_look_direction(-direction)
 		if valid_block_direction == _look_direction:
 			damage = 0
 			print("Attack from: ", LOOK_DIRECTION.keys()[vector_to_look_direction(direction)], " Blocked")
 	health_component.take_damage(damage, direction)
-	velocity_component.apply_bounce(damage, direction)
+	
 
 func vector_to_look_direction(direction: Vector2) -> LOOK_DIRECTION:
 	if abs(direction.x) > abs(direction.y):
