@@ -20,6 +20,12 @@ func set_shape_size(size: Vector2) -> void:
 func set_atacker_position(position: Vector2) -> void:
 	attack_position = position
 
+func calculate_attack_direction(emmiter_position: Vector2, target_position: Vector2) -> Vector2:
+	return -1 * (emmiter_position - target_position)
+
+func set_atacker_position(position: Vector2) -> void:
+	attack_position = position
+
 func calculate_attack_position(emmiter_position: Vector2, target_position: Vector2) -> Vector2:
 	return (emmiter_position + target_position)
 

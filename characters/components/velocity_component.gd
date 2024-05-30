@@ -14,7 +14,7 @@ func move(direction: Vector2) -> void:
 		impulse *= impulse_k
 
 func apply_bounce(bounce_force: float, direction: Vector2) -> void:
-	impulse = direction * bounce_force * impulse_k
+	impulse = direction * bounce_force
 	moveable.move_and_collide(impulse)
 
 func get_input_direction() -> Vector2:
