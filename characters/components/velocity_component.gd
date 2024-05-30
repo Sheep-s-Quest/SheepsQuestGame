@@ -7,11 +7,12 @@ extends Node2D
 @export var impulse_k: float = 0.01
 
 func move(direction: Vector2) -> void:
-	moveable.velocity = direction * move_speed
-	moveable.move_and_slide()
 	if impulse != Vector2.ZERO:
 		moveable.move_and_collide(impulse)
 		impulse *= impulse_k
+	
+	moveable.velocity = direction * move_speed
+	moveable.move_and_slide()
 
 func apply_bounce(bounce_force: float, direction: Vector2) -> void:
 	impulse = direction * bounce_force
