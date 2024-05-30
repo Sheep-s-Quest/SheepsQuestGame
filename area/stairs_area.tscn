@@ -3,12 +3,12 @@
 [ext_resource type="Script" path="res://area/stairs_area.gd" id="1_wtu3u"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6e6b2"]
-size = Vector2(126.156, 18)
+size = Vector2(126.156, 5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j7nhl"]
-size = Vector2(126, 18)
+size = Vector2(126, 5)
 
-[node name="StairsArea" type="Node2D"]
+[node name="StairsArea" type="Node2D" groups=["Stairs"]]
 z_index = 99
 script = ExtResource("1_wtu3u")
 
@@ -17,7 +17,7 @@ collision_layer = 7
 collision_mask = 7
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2DExit"]
-position = Vector2(0, -9)
+position = Vector2(0, -2.5)
 shape = SubResource("RectangleShape2D_6e6b2")
 
 [node name="Area2DEnter" type="Area2D" parent="."]
@@ -25,7 +25,7 @@ collision_layer = 7
 collision_mask = 7
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2DEnter"]
-position = Vector2(0, 9)
+position = Vector2(0, 2.5)
 shape = SubResource("RectangleShape2D_j7nhl")
 
 [connection signal="body_entered" from="Area2DExit" to="." method="_on_area_2d_exit_body_entered"]

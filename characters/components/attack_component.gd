@@ -29,16 +29,17 @@ func _ready():
 	attack_cooldown_timer.timeout.connect(_on_attack_cooldown_ended)
 	attack_cooldown_timer.wait_time = attack_cooldown
 
-func attack(attack_position: Vector2, flip_size: bool = false) -> void:
-	attack_with_size(attack_position, attack_area_size, flip_size)
+func attack(attack_position: Vector2, collision_layer: int, flip_size: bool = false) -> void:
+	attack_with_size(attack_position, collision_layer, attack_area_size, flip_size)
 
-func attack_with_size(attack_position: Vector2, size: Vector2 = self.attack_area_size, flip_size: bool = false) -> void:
+func attack_with_size(attack_position: Vector2, collision_layer: int, size: Vector2 = self.attack_area_size, flip_size: bool = false) -> void:
 	if is_attack_possible:
 		if flip_size:
 			size = Vector2(size.y, size.x)
 		
 		is_attack_possible = false
 		_attack_area = _damage_area_scene.instantiate()
+		_set_damage_arae_layer(collision_layer)
 		_attack_area.area_owner = attack_emmiter
 		_attack_area.position = attack_position
 		_attack_area.size = size
@@ -47,10 +48,16 @@ func attack_with_size(attack_position: Vector2, size: Vector2 = self.attack_area
 		attack_creation_timer.start()
 		attack_livetime_timer.start()
 		attack_cooldown_timer.start()
-			
+
 func calculate_attack_range() -> float:
 	return max(attack_area_size.x, attack_area_size.y) / 1.5
-		
+
+func _set_damage_arae_layer(collision_layer: int) -> void:
+	_attack_area.set_collision_layer_value(collision_layer - 1, false)
+	_attack_area.set_collision_mask_value(collision_layer - 1, false)
+	_attack_area.set_collision_layer_value(collision_layer, true)
+	_attack_area.set_collision_mask_value(collision_layer, true)
+
 func _on_attack_creation_ended() -> void:
 	if _attack_area != null:
 		add_child(_attack_area)

@@ -23,7 +23,11 @@ func set_atacker_position(position: Vector2) -> void:
 func calculate_attack_direction(emmiter_position: Vector2, target_position: Vector2) -> Vector2:
 	return -1 * (emmiter_position - target_position)
 
-func _on_body_entered(body) -> void:
+func calculate_attack_position(emmiter_position: Vector2, target_position: Vector2) -> Vector2:
+	return (emmiter_position + target_position)
+
+func _on_area_entered(area) -> void:
+	var body = area.get_parent()
 	if "take_damage" in body:
 		body.take_damage(damage, attack_position)
 		damage_hit.emit(body, attack_position)

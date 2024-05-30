@@ -14290,6 +14290,7 @@ y_sort_enabled = true
 position = Vector2(-191, 644)
 tile_set = SubResource("TileSet_qy4qv")
 rendering_quadrant_size = 64
+navigation_visibility_mode = 1
 format = 2
 layer_0/name = "Navigation_1"
 layer_0/y_sort_enabled = true
@@ -14353,6 +14354,11 @@ from_layer = 2
 to_layer = 3
 detection_area_layer = 26
 detection_area_next_layer = 27
+
+[node name="Camera2D" type="Camera2D" parent="."]
+z_index = 99
+position = Vector2(662, 258)
+zoom = Vector2(0.675, 0.675)
 
 [node name="Goblin" parent="." instance=ExtResource("35_vx7gw")]
 position = Vector2(272, 99)
