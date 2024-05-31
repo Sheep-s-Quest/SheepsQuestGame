@@ -57,6 +57,9 @@ func take_damage(damage: float, direction: Vector2) -> void:
 func set_layer_position(layer: LAYER_POSITION):
 	_layer_position = layer
 
+func play_animation() -> void:
+	pass
+
 func _on_attack_overed():
 	_current_state = ACTION_STATE.IDLE
 

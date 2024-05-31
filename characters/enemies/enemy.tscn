@@ -35,8 +35,9 @@ z_index = 99
 y_sort_enabled = true
 shape = SubResource("CircleShape2D_80jwg")
 
-[node name="VelocityComponent" parent="." instance=ExtResource("2_gjyy8")]
+[node name="VelocityComponent" parent="." node_paths=PackedStringArray("moveable") instance=ExtResource("2_gjyy8")]
 move_speed = 150.0
+moveable = NodePath("..")
 impulse_k = 0.2
 
 [node name="HitboxComponent" parent="." instance=ExtResource("3_gdd2j")]
