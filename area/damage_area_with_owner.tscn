@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://34e2mpa86tt"]
 
-[ext_resource type="Script" path="res://characters/components/damage_area_with_owner.gd" id="1_nojyt"]
+[ext_resource type="Script" path="res://area/damage_area_with_owner.gd" id="1_nojyt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0wtk1"]
 size = Vector2(93, 90)

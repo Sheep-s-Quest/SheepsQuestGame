@@ -48,10 +48,10 @@ func attack():
 func take_damage(damage: float, direction: Vector2) -> void:
 	velocity_component.apply_bounce(damage, direction)
 	if _current_state == ACTION_STATE.BLOCK:
-		var valid_block_direction = vector_to_look_direction(-direction)
+		var valid_block_direction = Vec2Utils.vector2_to_look_direction(-direction)
 		if valid_block_direction == _look_direction:
 			damage = 0
-			print("Attack from: ", LOOK_DIRECTION.keys()[vector_to_look_direction(direction)], " Blocked")
+			print("Attack from: ", LOOK_DIRECTION.keys()[Vec2Utils.vector2_to_look_direction(direction)], " Blocked")
 	health_component.take_damage(damage, direction)
 
 func set_layer_position(layer: LAYER_POSITION):
@@ -69,14 +69,3 @@ func _on_died() -> void:
 	queue_free()
 
 
-static func vector_to_look_direction(direction: Vector2) -> LOOK_DIRECTION:
-	if abs(direction.x) > abs(direction.y):
-		if direction.x > 0:
-			return LOOK_DIRECTION.RIGHT
-		else:
-			return LOOK_DIRECTION.LEFT
-	else:
-		if direction.y > 0:
-			return LOOK_DIRECTION.DOWN
-		else:
-			return LOOK_DIRECTION.UP

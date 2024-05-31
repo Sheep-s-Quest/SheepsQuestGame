@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://bl5k6lnca7tck"]
+
+[node name="DamageableComponent" type="Area2D"]
+collision_layer = 128
+collision_mask = 128
