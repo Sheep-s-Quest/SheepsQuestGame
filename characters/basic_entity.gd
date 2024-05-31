@@ -2,7 +2,7 @@ class_name BasicEntity
 extends CharacterBody2D
 
 enum LOOK_DIRECTION {LEFT, RIGHT, UP, DOWN}
-enum ACTION_STATE {IDLE, WALK, ATTACK, BLOCK}
+enum ACTION_STATE {IDLE, WALK, ATTACK, RANGE_ATTACK, BLOCK}
 enum LAYER_POSITION {FIRST_LAYER = 1, SECOND_LAYER = 2, THIRD_LAYER = 3}
 
 var _base_damage_layer = 8

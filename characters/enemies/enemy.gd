@@ -16,15 +16,16 @@ func _handle_default_state() -> void:
 		var direction = to_local(navigation.get_navigation_path()).normalized()
 		_update_look_direction_to_point(direction)
 		
-		if position.distance_to(player.position) >= attack_component.calculate_attack_range():
-			velocity_component.move(direction)
-			_current_state = ACTION_STATE.WALK
-		else:
+		if _is_possible_melee_attack(player):
 			if attack_component.is_attack_possible:
 				_current_state = ACTION_STATE.ATTACK
 				attack()
 			else:
 				_current_state = ACTION_STATE.IDLE
+		else:
+			velocity_component.move(direction)
+			_current_state = ACTION_STATE.WALK
+			
 		navigation.check_distance()
 	else:
 		_current_state = ACTION_STATE.IDLE
@@ -46,7 +47,8 @@ func _update_look_direction_to_point(point: Vector2) -> void:
 		_look_direction = LOOK_DIRECTION.RIGHT
 		_is_sprite_flipped_h = true
 
-
+func _is_possible_melee_attack(player: Node2D) -> bool:
+	return !position.distance_to(player.position) >= attack_component.calculate_attack_range()
 
 func _on_detection_area_area_entered(area) -> void:
 	if area.get_parent().is_in_group("Player"):

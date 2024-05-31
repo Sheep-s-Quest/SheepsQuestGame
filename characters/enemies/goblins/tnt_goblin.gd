@@ -8,12 +8,11 @@ func _ready():
 
 func _physics_process(_delta) -> void:
 	match _current_state:
-		ACTION_STATE.ATTACK:
+		ACTION_STATE.ATTACK, ACTION_STATE.RANGE_ATTACK:
 			return
 		_:
 			_handle_default_state()
 			_play_animation()
-			print("Current state: ", ACTION_STATE.keys()[_current_state])
 
 func _play_animation() -> void:
 	match _current_state:
@@ -27,7 +26,7 @@ func _play_animation() -> void:
 				animation_player.play("walk")
 			else:
 				animation_player.play("walk_flipped_h")
-		ACTION_STATE.ATTACK:
+		ACTION_STATE.ATTACK, ACTION_STATE.RANGE_ATTACK:
 			match _look_direction:
 				LOOK_DIRECTION.RIGHT:
 					animation_player.play("attack")
@@ -38,8 +37,3 @@ func _play_animation() -> void:
 						animation_player.play("attack_flipped_h")
 					else:
 						animation_player.play("attack")
-		_:
-			if _is_sprite_flipped_h:
-				animation_player.play("idle")
-			else:
-				animation_player.play("idle_flipped_h")	

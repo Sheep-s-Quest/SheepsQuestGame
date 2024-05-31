@@ -14360,3 +14360,4 @@ position = Vector2(272, 99)
 
 [node name="TntGoblin" parent="." instance=ExtResource("36_b5a64")]
 position = Vector2(1048, 475)
+is_alive = true
