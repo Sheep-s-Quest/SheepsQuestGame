@@ -1,6 +1,7 @@
-[gd_scene load_steps=69 format=3 uid="uid://ckiccqk0x5lb3"]
+[gd_scene load_steps=70 format=3 uid="uid://ckiccqk0x5lb3"]
 
 [ext_resource type="PackedScene" uid="uid://jyjuvgel177t" path="res://characters/player/player.tscn" id="1_6coc8"]
+[ext_resource type="PackedScene" uid="uid://ihsec4gesy6t" path="res://levels/manager.tscn" id="1_fdaik"]
 [ext_resource type="Texture2D" uid="uid://dds41c603bxxp" path="res://sprites/world/tilesets/ground/Tilemap_Flat.png" id="2_vmkgw"]
 [ext_resource type="Texture2D" uid="uid://d22rqtpyjq7ix" path="res://sprites/world/tilesets/ground/Tilemap_Elevation.png" id="3_4fcyb"]
 [ext_resource type="Texture2D" uid="uid://8t7hlhwmvwh5" path="res://sprites/world/tilesets/ground/Shadows.png" id="4_0ewfo"]
@@ -14224,7 +14225,11 @@ sources/60 = SubResource("TileSetAtlasSource_tumvm")
 sources/10 = SubResource("TileSetAtlasSource_il31u")
 
 [node name="GameLevel" type="Node2D"]
+process_mode = 1
 y_sort_enabled = true
+
+[node name="Manager" parent="." instance=ExtResource("1_fdaik")]
+process_mode = 3
 
 [node name="Player" parent="." instance=ExtResource("1_6coc8")]
 position = Vector2(207, 295)
@@ -14294,10 +14299,10 @@ player_next_z_index = 3
 physics_layer = 2
 physics_next_layer = 3
 
-[node name="Goblin" parent="." instance=ExtResource("35_8ncij")]
+[node name="Andry" parent="." instance=ExtResource("35_8ncij")]
 position = Vector2(114, 58)
 
-[node name="Goblin2" parent="." instance=ExtResource("35_8ncij")]
+[node name="Brog" parent="." instance=ExtResource("35_8ncij")]
 position = Vector2(667, 621)
 
 [node name="LeftDown" type="Marker2D" parent="."]
@@ -14306,5 +14311,5 @@ position = Vector2(-127, 835)
 [node name="RightUp" type="Marker2D" parent="."]
 position = Vector2(1473, -188)
 
-[node name="Goblin3" parent="." instance=ExtResource("35_8ncij")]
+[node name="Flint" parent="." instance=ExtResource("35_8ncij")]
 position = Vector2(844, 609)

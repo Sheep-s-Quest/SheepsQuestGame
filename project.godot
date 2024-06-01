@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="Sheep's Quest"
-run/main_scene="res://levels/test_level.tscn"
+run/main_scene="res://UI/ui_scenes/main_menu/main_menu.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
+
+[display]
+
+mouse_cursor/custom_image="res://sprites/ui/01.png"
 
 [input]
 
