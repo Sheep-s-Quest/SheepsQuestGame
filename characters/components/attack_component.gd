@@ -9,6 +9,7 @@ signal attack_overed
 @export var attack_livetime: float = 0.5
 @export var attack_cooldown: float = 1.0
 @export var time_before_attack_creatioon: float = 0.1
+@export var attack_sound_file: AudioStream
 
 var is_attack_possible: bool = true
 var _attack_area: DamageAreaWithOwner = null
@@ -18,6 +19,7 @@ var _damage_area_scene = preload("res://characters/components/damage_area_with_o
 @onready var attack_creation_timer: Timer = $AttackCreationTimer
 @onready var attack_livetime_timer: Timer = $AttackLivetimeTimer
 @onready var attack_cooldown_timer: Timer = $AttackCooldownTimer
+@onready var attack_sound: AudioStreamPlayer2D = $AttackSound
 
 func _ready():
 	attack_creation_timer.timeout.connect(_on_attack_creation_ended)
@@ -28,9 +30,12 @@ func _ready():
 	
 	attack_cooldown_timer.timeout.connect(_on_attack_cooldown_ended)
 	attack_cooldown_timer.wait_time = attack_cooldown
+	
+	attack_sound.stream = attack_sound_file
 
 func attack(attack_position: Vector2, collision_layer: int, flip_size: bool = false) -> void:
 	attack_with_size(attack_position, collision_layer, attack_area_size, flip_size)
+	attack_sound.play()
 
 func attack_with_size(attack_position: Vector2, collision_layer: int, size: Vector2 = self.attack_area_size, flip_size: bool = false) -> void:
 	if is_attack_possible:
@@ -39,7 +44,7 @@ func attack_with_size(attack_position: Vector2, collision_layer: int, size: Vect
 		
 		is_attack_possible = false
 		_attack_area = _damage_area_scene.instantiate()
-		_set_damage_arae_layer(collision_layer)
+		_set_damage_area_layer(collision_layer)
 		_attack_area.area_owner = attack_emmiter
 		_attack_area.position = attack_position
 		_attack_area.size = size
@@ -52,7 +57,7 @@ func attack_with_size(attack_position: Vector2, collision_layer: int, size: Vect
 func calculate_attack_range() -> float:
 	return max(attack_area_size.x, attack_area_size.y) / 1.5
 
-func _set_damage_arae_layer(collision_layer: int) -> void:
+func _set_damage_area_layer(collision_layer: int) -> void:
 	_attack_area.set_collision_layer_value(collision_layer - 1, false)
 	_attack_area.set_collision_mask_value(collision_layer - 1, false)
 	_attack_area.set_collision_layer_value(collision_layer, true)
