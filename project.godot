@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [display]
 
 mouse_cursor/custom_image="res://sprites/ui/01.png"
+mouse_cursor/custom_image_hotspot=Vector2(22, 15)
 
 [input]
 

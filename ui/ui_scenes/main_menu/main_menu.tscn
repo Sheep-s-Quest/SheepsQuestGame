@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cmvrh7ujihax" path="res://ui/ui_scenes/main_menu/bg.tscn" id="1_77osv"]
 [ext_resource type="Script" path="res://ui/ui_scenes/main_menu/main_menu.gd" id="1_qlt1c"]
-[ext_resource type="Theme" uid="uid://bb7s3b3wau4nt" path="res://ui/main_theme.tres" id="2_ulpyx"]
+[ext_resource type="Theme" uid="uid://b3x8x201hf367" path="res://ui/new_theme.tres" id="2_05vcu"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -26,7 +26,7 @@ offset_right = 259.0
 offset_bottom = 250.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("2_ulpyx")
+theme = ExtResource("2_05vcu")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
 layout_mode = 1
@@ -61,6 +61,7 @@ size_flags_vertical = 3
 size_flags_stretch_ratio = 0.57
 text = "Play
 "
+icon_alignment = 1
 
 [node name="Control" type="Control" parent="Panel/VBoxContainer"]
 layout_mode = 2

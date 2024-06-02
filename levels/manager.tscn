@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://ihsec4gesy6t"]
 
 [ext_resource type="Script" path="res://levels/manager.gd" id="1_ox63w"]
-[ext_resource type="Theme" uid="uid://bb7s3b3wau4nt" path="res://ui/main_theme.tres" id="2_rebu0"]
+[ext_resource type="Theme" uid="uid://b3x8x201hf367" path="res://ui/new_theme.tres" id="2_bfdem"]
 
 [node name="Manager" type="Node"]
 script = ExtResource("1_ox63w")
@@ -20,7 +20,7 @@ offset_right = -1.0
 offset_bottom = -1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("2_rebu0")
+theme = ExtResource("2_bfdem")
 
 [node name="Panel" type="Panel" parent="CanvasLayer/PauseMenu"]
 layout_mode = 1
