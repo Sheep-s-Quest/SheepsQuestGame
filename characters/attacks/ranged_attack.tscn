@@ -26,10 +26,17 @@ _data = {
 }
 
 [node name="RangedAttack" type="RigidBody2D" groups=["RangedAttack"]]
+z_index = 1
+y_sort_enabled = true
 collision_layer = 128
 collision_mask = 128
 gravity_scale = 0.0
 script = ExtResource("1_ycfjp")
+damage = null
+live_time = null
+speed = null
+direction = null
+time_before_collision = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 debug_color = Color(0.853564, 0.366409, 0.118533, 0.42)
@@ -45,3 +52,7 @@ libraries = {
 [node name="LiveTimer" type="Timer" parent="."]
 
 [node name="DamageableComponent" parent="." instance=ExtResource("2_p60gu")]
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

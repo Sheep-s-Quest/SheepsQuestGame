@@ -16,8 +16,9 @@ shape = SubResource("CircleShape2D_puur8")
 
 [node name="Sprite2D" parent="." index="1"]
 texture = ExtResource("2_lwep5")
-frame = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageableComponent" index="0"]
 shape = SubResource("CircleShape2D_puur8")
 debug_color = Color(0.853564, 0.366409, 0.118533, 0.42)
+
+[node name="BeforeDamageCollisionTimer" type="Timer" parent="." index="5"]

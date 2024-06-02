@@ -12,8 +12,11 @@ func _handle_default_state() -> void:
 		if _is_possible_ranged_attack(player):
 			_current_state = ACTION_STATE.RANGE_ATTACK
 			ranged_attack(player)
-		else:
-			pass
+		elif _is_possible_melee_attack(player):
+			_current_state = ACTION_STATE.ATTACK
+			attack()
+		
+		
 		
 		navigation.check_distance()
 	else:

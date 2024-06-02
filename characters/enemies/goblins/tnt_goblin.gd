@@ -8,7 +8,7 @@ func _ready():
 
 func _physics_process(_delta) -> void:
 	match _current_state:
-		ACTION_STATE.ATTACK, ACTION_STATE.RANGE_ATTACK:
+		ACTION_STATE.ATTACK:
 			return
 		_:
 			_handle_default_state()
