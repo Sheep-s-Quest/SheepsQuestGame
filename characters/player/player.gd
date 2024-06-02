@@ -31,7 +31,7 @@ func _update_look_direction(move_input: Vector2) -> void:
 		if move_input.x > 0:
 			_look_direction = LOOK_DIRECTION.RIGHT
 			_is_sprite_flipped_h = false
-		elif move_input.x < 0:	
+		elif move_input.x < 0:
 			_look_direction = LOOK_DIRECTION.LEFT
 			_is_sprite_flipped_h = true 
 		elif move_input.y > 0:

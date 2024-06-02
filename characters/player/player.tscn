@@ -1,13 +1,15 @@
-[gd_scene load_steps=26 format=3 uid="uid://jyjuvgel177t"]
+[gd_scene load_steps=28 format=3 uid="uid://jyjuvgel177t"]
 
 [ext_resource type="Script" path="res://characters/player/player.gd" id="1_83tmx"]
 [ext_resource type="Texture2D" uid="uid://dhll2itbsrhp3" path="res://sprites/characters/Warrior_Blue.png" id="1_nkxk2"]
 [ext_resource type="PackedScene" uid="uid://cl4wkaeoe2nj6" path="res://characters/components/health_component.tscn" id="3_b5hnn"]
 [ext_resource type="PackedScene" uid="uid://ohusb04dggx7" path="res://characters/components/hitbox_component.tscn" id="4_bcvvo"]
+[ext_resource type="AudioStream" uid="uid://b0v7avke5dbjv" path="res://sfx/player_damage.wav" id="4_g7ch2"]
 [ext_resource type="PackedScene" uid="uid://bwrxcbrwgj8ym" path="res://characters/components/detection_component.tscn" id="5_33ccx"]
 [ext_resource type="PackedScene" uid="uid://coagu8sx2pner" path="res://characters/components/attack_component.tscn" id="6_yy7vp"]
 [ext_resource type="PackedScene" uid="uid://b7iw2osuqd3c0" path="res://characters/components/velocity_component.tscn" id="7_nd1wj"]
 [ext_resource type="AudioStream" uid="uid://cshlvimny3ytj" path="res://sfx/player_swing.wav" id="8_rgmoj"]
+[ext_resource type="AudioStream" uid="uid://bfn1umbx5c3iu" path="res://sfx/player_walk.wav" id="9_6fdb0"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rxw80"]
 radius = 12.1655
@@ -368,6 +370,7 @@ libraries = {
 [node name="HealthComponent" parent="." instance=ExtResource("3_b5hnn")]
 max_hit_points = 300.0
 hit_points = 300.0
+damage_received_sound_source = ExtResource("4_g7ch2")
 
 [node name="HitboxComponent" parent="." instance=ExtResource("4_bcvvo")]
 
@@ -396,5 +399,6 @@ attack_sound_source = ExtResource("8_rgmoj")
 
 [node name="VelocityComponent" parent="." node_paths=PackedStringArray("moveable") instance=ExtResource("7_nd1wj")]
 moveable = NodePath("..")
+walking_sound_source = ExtResource("9_6fdb0")
 
 [node name="Camera2D" type="Camera2D" parent="."]

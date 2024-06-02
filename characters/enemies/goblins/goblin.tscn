@@ -1,9 +1,10 @@
-[gd_scene load_steps=23 format=3 uid="uid://cwcdmtqr0acs8"]
+[gd_scene load_steps=24 format=3 uid="uid://cwcdmtqr0acs8"]
 
 [ext_resource type="Script" path="res://characters/enemies/goblins/goblin.gd" id="1_e2piu"]
 [ext_resource type="Texture2D" uid="uid://so54xn6dm44p" path="res://sprites/enemies/goblins/Torch_Red.png" id="2_lws1a"]
 [ext_resource type="PackedScene" uid="uid://b7iw2osuqd3c0" path="res://characters/components/velocity_component.tscn" id="3_n4i6f"]
 [ext_resource type="PackedScene" uid="uid://ohusb04dggx7" path="res://characters/components/hitbox_component.tscn" id="4_cxkck"]
+[ext_resource type="AudioStream" uid="uid://bf3n40c1un2vy" path="res://sfx/goblin_walk.wav" id="4_sy35d"]
 [ext_resource type="PackedScene" uid="uid://cl4wkaeoe2nj6" path="res://characters/components/health_component.tscn" id="5_6f2b3"]
 [ext_resource type="AudioStream" uid="uid://cdb7qjnf33fhc" path="res://sfx/goblin_damage.wav" id="6_7epnp"]
 [ext_resource type="PackedScene" uid="uid://coagu8sx2pner" path="res://characters/components/attack_component.tscn" id="6_sxaqw"]
@@ -265,6 +266,7 @@ shape = SubResource("CircleShape2D_tao0g")
 move_speed = 150.0
 moveable = NodePath("..")
 impulse_k = 0.2
+walking_sound_source = ExtResource("4_sy35d")
 
 [node name="HitboxComponent" parent="." instance=ExtResource("4_cxkck")]
 

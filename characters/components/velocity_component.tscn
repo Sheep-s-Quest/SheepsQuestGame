@@ -4,3 +4,5 @@
 
 [node name="VelocityComponent" type="Node2D"]
 script = ExtResource("1_b3imn")
+
+[node name="WalkingSound" type="AudioStreamPlayer2D" parent="."]
