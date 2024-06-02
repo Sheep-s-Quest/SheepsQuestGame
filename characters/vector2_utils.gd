@@ -18,5 +18,6 @@ static func vector2_to_look_direction(direction: Vector2) -> BasicEntity.LOOK_DI
 			return BasicEntity.LOOK_DIRECTION.DOWN
 		else:
 			return BasicEntity.LOOK_DIRECTION.UP
+	
 
 	

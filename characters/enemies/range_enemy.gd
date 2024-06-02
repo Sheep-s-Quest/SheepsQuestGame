@@ -10,22 +10,18 @@ func _handle_default_state() -> void:
 		_update_look_direction_to_point(direction)
 		
 		if _is_possible_ranged_attack(player):
-			ranged_attack()
-		elif _is_possible_melee_attack(player):
-			velocity_component.move(direction)
-			_current_state = ACTION_STATE.WALK
+			_current_state = ACTION_STATE.RANGE_ATTACK
+			ranged_attack(player)
 		else:
-			if attack_component.is_attack_possible:
-				_current_state = ACTION_STATE.ATTACK
-				attack()
-			else:
-				_current_state = ACTION_STATE.IDLE
+			pass
+		
 		navigation.check_distance()
 	else:
 		_current_state = ACTION_STATE.IDLE
 
-func ranged_attack() -> void:
-	pass
+func ranged_attack(player: Node2D) -> void:
+	var direction = Vec2Utils.calculate_direction(self.position, player.position)
+	ranged_attack_component.attack(direction)
 
 func _is_possible_ranged_attack(player: Node2D) -> bool:
-	return position.distance_squared_to(player.position) <= ranged_attack_component.attack_range and ranged_attack_component.is_attack_possible
+	return ranged_attack_component.attack_range >= position.distance_to(player.position) and ranged_attack_component.is_attack_possible

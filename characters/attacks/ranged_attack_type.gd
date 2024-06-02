@@ -4,7 +4,7 @@ enum TYPE {
 	TNT
 }
 
-static var SCENE : Dictionary = {
+const SCENE : Dictionary = {
 	TYPE.TNT : preload("res://characters/attacks/throwed_dynamite.tscn")
 }
 

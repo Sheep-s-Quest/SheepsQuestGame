@@ -17,7 +17,7 @@ func _ready() -> void:
 	live_timer.timeout.connect(_on_live_time_ended)
 	live_timer.start()
 	linear_velocity = direction * speed
-	
+
 func _on_live_time_ended() -> void:
 	queue_free()
 
