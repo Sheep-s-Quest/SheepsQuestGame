@@ -20,6 +20,8 @@ func _update_current_state(input_direction: Vector2) -> void:
 	if Input.is_action_just_pressed("attack") && attack_component.is_attack_possible:
 		_current_state = ACTION_STATE.ATTACK
 		attack()
+		await get_tree().create_timer(0.35).timeout
+		$SwingSFX.play()
 		return
 	if input_direction != Vector2.ZERO:
 		_current_state = ACTION_STATE.WALK
