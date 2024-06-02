@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://jyjuvgel177t"]
+[gd_scene load_steps=26 format=3 uid="uid://jyjuvgel177t"]
 
 [ext_resource type="Script" path="res://characters/player/player.gd" id="1_83tmx"]
 [ext_resource type="Texture2D" uid="uid://dhll2itbsrhp3" path="res://sprites/characters/Warrior_Blue.png" id="1_nkxk2"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bwrxcbrwgj8ym" path="res://characters/components/detection_component.tscn" id="5_33ccx"]
 [ext_resource type="PackedScene" uid="uid://coagu8sx2pner" path="res://characters/components/attack_component.tscn" id="6_yy7vp"]
 [ext_resource type="PackedScene" uid="uid://b7iw2osuqd3c0" path="res://characters/components/velocity_component.tscn" id="7_nd1wj"]
+[ext_resource type="AudioStream" uid="uid://cjhbk0o7vuhy8" path="res://sfx/swing.wav" id="8_rgmoj"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rxw80"]
 radius = 12.1655
@@ -389,7 +390,11 @@ y_sort_enabled = true
 position = Vector2(0, -30)
 attack_emmiter = NodePath("..")
 attack_area_size = Vector2(120, 50)
+damage = 50.0
+attack_livetime = 0.5
 attack_cooldown = 0.5
+time_before_attack_creatioon = 0.1
+attack_sound_source = ExtResource("8_rgmoj")
 
 [node name="VelocityComponent" parent="." node_paths=PackedStringArray("moveable") instance=ExtResource("7_nd1wj")]
 moveable = NodePath("..")

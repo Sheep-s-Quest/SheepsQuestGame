@@ -9,7 +9,7 @@ signal attack_overed
 @export var attack_livetime: float = 0.5
 @export var attack_cooldown: float = 1.0
 @export var time_before_attack_creatioon: float = 0.1
-@export var attack_sound_file: AudioStream
+@export var attack_sound_source: AudioStream
 
 var is_attack_possible: bool = true
 var _attack_area: DamageAreaWithOwner = null
@@ -31,7 +31,7 @@ func _ready():
 	attack_cooldown_timer.timeout.connect(_on_attack_cooldown_ended)
 	attack_cooldown_timer.wait_time = attack_cooldown
 	
-	attack_sound.stream = attack_sound_file
+	attack_sound.stream = attack_sound_source
 
 func attack(attack_position: Vector2, collision_layer: int, flip_size: bool = false) -> void:
 	attack_with_size(attack_position, collision_layer, attack_area_size, flip_size)

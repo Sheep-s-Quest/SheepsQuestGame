@@ -1,11 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://coagu8sx2pner"]
+[gd_scene load_steps=2 format=3 uid="uid://coagu8sx2pner"]
 
 [ext_resource type="Script" path="res://characters/components/attack_component.gd" id="1_2ytwp"]
-[ext_resource type="AudioStream" uid="uid://cjhbk0o7vuhy8" path="res://sfx/swing.wav" id="2_ej3u6"]
 
 [node name="AttackComponent" type="Node2D"]
 script = ExtResource("1_2ytwp")
-attack_sound_file = ExtResource("2_ej3u6")
 
 [node name="AttackLivetimeTimer" type="Timer" parent="."]
 
