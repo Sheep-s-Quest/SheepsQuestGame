@@ -4,3 +4,5 @@
 
 [node name="HealthComponent" type="Node2D"]
 script = ExtResource("1_8sgg1")
+
+[node name="DamageReceivedSound" type="AudioStreamPlayer2D" parent="."]

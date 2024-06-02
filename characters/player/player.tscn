@@ -391,6 +391,7 @@ position = Vector2(0, -30)
 attack_emmiter = NodePath("..")
 attack_area_size = Vector2(120, 50)
 attack_cooldown = 0.5
+time_before_attack_creatioon = 0.3
 attack_sound_source = ExtResource("8_rgmoj")
 
 [node name="VelocityComponent" parent="." node_paths=PackedStringArray("moveable") instance=ExtResource("7_nd1wj")]

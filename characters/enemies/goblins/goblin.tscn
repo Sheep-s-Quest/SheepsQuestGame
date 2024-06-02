@@ -1,10 +1,11 @@
-[gd_scene load_steps=22 format=3 uid="uid://cwcdmtqr0acs8"]
+[gd_scene load_steps=23 format=3 uid="uid://cwcdmtqr0acs8"]
 
 [ext_resource type="Script" path="res://characters/enemies/goblins/goblin.gd" id="1_e2piu"]
 [ext_resource type="Texture2D" uid="uid://so54xn6dm44p" path="res://sprites/enemies/goblins/Torch_Red.png" id="2_lws1a"]
 [ext_resource type="PackedScene" uid="uid://b7iw2osuqd3c0" path="res://characters/components/velocity_component.tscn" id="3_n4i6f"]
 [ext_resource type="PackedScene" uid="uid://ohusb04dggx7" path="res://characters/components/hitbox_component.tscn" id="4_cxkck"]
 [ext_resource type="PackedScene" uid="uid://cl4wkaeoe2nj6" path="res://characters/components/health_component.tscn" id="5_6f2b3"]
+[ext_resource type="AudioStream" uid="uid://cdb7qjnf33fhc" path="res://sfx/goblin_damage.wav" id="6_7epnp"]
 [ext_resource type="PackedScene" uid="uid://coagu8sx2pner" path="res://characters/components/attack_component.tscn" id="6_sxaqw"]
 [ext_resource type="AudioStream" uid="uid://fnl0fanq7q71" path="res://sfx/goblin_swing.wav" id="7_6ifok"]
 [ext_resource type="PackedScene" uid="uid://dhnk4lheff3t4" path="res://characters/components/detection_area_component.tscn" id="7_1076q"]
@@ -272,6 +273,7 @@ position = Vector2(0, -25)
 shape = SubResource("CircleShape2D_3neig")
 
 [node name="HealthComponent" parent="." instance=ExtResource("5_6f2b3")]
+damage_received_sound_source = ExtResource("6_7epnp")
 
 [node name="AttackComponent" parent="." node_paths=PackedStringArray("attack_emmiter") instance=ExtResource("6_sxaqw")]
 z_index = 1
