@@ -5,8 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://ohusb04dggx7" path="res://characters/components/hitbox_component.tscn" id="3_2c4ae"]
 [ext_resource type="PackedScene" uid="uid://cl4wkaeoe2nj6" path="res://characters/components/health_component.tscn" id="4_8pvbm"]
 [ext_resource type="PackedScene" uid="uid://coagu8sx2pner" path="res://characters/components/attack_component.tscn" id="5_1b770"]
-[ext_resource type="Script" path="res://characters/components/ranged_attack_component.gd" id="5_c3sv2"]
 [ext_resource type="PackedScene" uid="uid://dhnk4lheff3t4" path="res://characters/components/detection_area_component.tscn" id="6_5idv8"]
+[ext_resource type="PackedScene" uid="uid://ln3f00o6jh0u" path="res://characters/components/ranged_attack_component.tscn" id="6_l6i55"]
 [ext_resource type="PackedScene" uid="uid://isaf1h5pxxra" path="res://characters/components/navigation_component.tscn" id="7_cx6ht"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wqbq6"]
@@ -50,10 +50,6 @@ shape = SubResource("CircleShape2D_suqk2")
 
 [node name="HealthComponent" parent="." instance=ExtResource("4_8pvbm")]
 
-[node name="RangedAttackComponent" type="Node2D" parent="." node_paths=PackedStringArray("attack_emmiter")]
-script = ExtResource("5_c3sv2")
-attack_emmiter = NodePath("..")
-
 [node name="AttackComponent" parent="." instance=ExtResource("5_1b770")]
 z_index = 1
 y_sort_enabled = true
@@ -62,6 +58,8 @@ damage = 10.0
 attack_livetime = 0.6
 attack_cooldown = 3.0
 time_before_attack_creatioon = 0.3
+
+[node name="RangedAttackComponent" parent="." instance=ExtResource("6_l6i55")]
 
 [node name="DetectionAreaComponent" parent="." instance=ExtResource("6_5idv8")]
 z_index = 1

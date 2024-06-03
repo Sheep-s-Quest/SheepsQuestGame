@@ -5,7 +5,7 @@ extends RigidBody2D
 @export var live_time: float = 10.0
 @export var speed: float = 1.5
 @export var direction: Vector2 = Vector2.ZERO
-@export var time_before_collision: float = 1.0
+@export var time_before_collision: float = 0.2
 
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
@@ -23,15 +23,12 @@ func _ready() -> void:
 	live_timer.timeout.connect(_on_live_time_ended)
 	live_timer.start()
 	linear_velocity = direction * speed
-	
-
-func _physics_process(delta):
-	print(self, " current position: ", position)
 
 func _on_live_time_ended() -> void:
 	queue_free()
 
 func _on_time_before_collision_ended() -> void:
+	print("damage on")
 	damageable_component.area_entered.connect(_on_damageable_area_area_entered)
 
 func _on_damageable_area_area_entered(area: Area2D) -> void:
