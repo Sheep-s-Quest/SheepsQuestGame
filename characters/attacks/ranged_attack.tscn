@@ -32,11 +32,6 @@ collision_layer = 128
 collision_mask = 128
 gravity_scale = 0.0
 script = ExtResource("1_ycfjp")
-damage = null
-live_time = null
-speed = null
-direction = null
-time_before_collision = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 debug_color = Color(0.853564, 0.366409, 0.118533, 0.42)

@@ -10,6 +10,9 @@ func _physics_process(_delta) -> void:
 	match _current_state:
 		ACTION_STATE.ATTACK:
 			return
+		ACTION_STATE.RANGE_ATTACK:
+			await animation_player.animation_finished
+			_current_state = ACTION_STATE.IDLE
 		_:
 			_handle_default_state()
 			_play_animation()
@@ -33,7 +36,7 @@ func _play_animation() -> void:
 				LOOK_DIRECTION.LEFT:
 					animation_player.play("attack_flipped_h")
 				LOOK_DIRECTION.DOWN, LOOK_DIRECTION.UP:
-					if _is_sprite_flipped_h:
+					if !_is_sprite_flipped_h:
 						animation_player.play("attack_flipped_h")
 					else:
 						animation_player.play("attack")

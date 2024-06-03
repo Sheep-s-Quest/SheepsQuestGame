@@ -17,7 +17,6 @@ func _handle_default_state() -> void:
 			attack()
 		
 		
-		
 		navigation.check_distance()
 	else:
 		_current_state = ACTION_STATE.IDLE

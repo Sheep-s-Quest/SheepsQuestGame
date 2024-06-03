@@ -205,3 +205,6 @@ moveable = NodePath("..")
 
 [node name="AttackComponent" parent="." index="6" node_paths=PackedStringArray("attack_emmiter")]
 attack_emmiter = NodePath("..")
+
+[node name="RangedAttackComponent" parent="." index="7" node_paths=PackedStringArray("attack_emmiter")]
+attack_emmiter = NodePath("..")

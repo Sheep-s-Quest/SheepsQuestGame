@@ -24,5 +24,4 @@ func attack(direction: Vector2) -> void:
 	add_child(attack)
 
 func _on_cooldown_ended() -> void:
-	print("YEA")
 	is_attack_possible = true

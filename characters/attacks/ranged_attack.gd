@@ -10,15 +10,10 @@ extends RigidBody2D
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var live_timer: Timer = $LiveTimer
-@onready var before_damage_collision_timer: Timer = $BeforeDamageCollisionTimer
 @onready var damageable_component: Area2D = $DamageableComponent
 
 
 func _ready() -> void:
-	before_damage_collision_timer.wait_time = time_before_collision
-	before_damage_collision_timer.timeout.connect(_on_time_before_collision_ended)
-	before_damage_collision_timer.start()
-	
 	live_timer.wait_time = live_time
 	live_timer.timeout.connect(_on_live_time_ended)
 	live_timer.start()
@@ -27,9 +22,6 @@ func _ready() -> void:
 func _on_live_time_ended() -> void:
 	queue_free()
 
-func _on_time_before_collision_ended() -> void:
-	print("damage on")
-	damageable_component.area_entered.connect(_on_damageable_area_area_entered)
 
 func _on_damageable_area_area_entered(area: Area2D) -> void:
 	var parent = area.get_parent()
