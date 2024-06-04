@@ -22,7 +22,6 @@ func _ready() -> void:
 func _on_live_time_ended() -> void:
 	queue_free()
 
-
 func _on_damageable_area_area_entered(area: Area2D) -> void:
 	var parent = area.get_parent()
 	if parent is BasicEntity:

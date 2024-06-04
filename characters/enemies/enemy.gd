@@ -11,6 +11,9 @@ var in_chase: bool = false
 
 
 func _handle_default_state() -> void:
+	if !is_instance_valid(player):
+		player = null
+	
 	if in_chase and player and is_alive:
 		navigation.set_target(player, self)
 		var direction = to_local(navigation.get_navigation_path()).normalized()
