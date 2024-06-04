@@ -1,7 +1,6 @@
 class_name RangedAttackComponent
 extends Node2D
 
-
 @export var attack_emmiter: Node2D = null
 @export var ranged_attack_type: RANGED_ATTACK.TYPE = 0
 @export var attack_cooldown: float = 3.0

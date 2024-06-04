@@ -7,10 +7,9 @@ signal damage_hit(target, direction: Vector2)
 @export var attack_position: Vector2 = Vector2.ZERO
 @export var size: Vector2 = Vector2(100, 100)
 
-var collision_shape: RectangleShape2D = null
+@onready var collision_shape: RectangleShape2D = $CollisionShape2D.shape
 
 func _ready():
-	collision_shape = RectangleShape2D.new()
 	collision_shape.size = size
 
 func set_shape_size(size: Vector2) -> void:

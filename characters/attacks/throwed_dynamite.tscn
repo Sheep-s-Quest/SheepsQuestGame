@@ -12,15 +12,13 @@ mass = 0.5
 script = ExtResource("2_sfhmf")
 sprite_rotation = 0.01
 damage = 50.0
+live_time = 1.5
 
 [node name="CollisionShape2D" parent="." index="0"]
 shape = SubResource("CircleShape2D_puur8")
 
 [node name="Sprite2D" parent="." index="1"]
 texture = ExtResource("2_lwep5")
-
-[node name="DamageableComponent" parent="." index="4"]
-script = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageableComponent" index="0"]
 shape = SubResource("CircleShape2D_puur8")
