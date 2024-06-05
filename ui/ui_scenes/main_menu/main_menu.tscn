@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://b7hbl0u5vybki"]
+[gd_scene load_steps=5 format=3 uid="uid://b7hbl0u5vybki"]
 
 [ext_resource type="PackedScene" uid="uid://cmvrh7ujihax" path="res://ui/ui_scenes/main_menu/bg.tscn" id="1_77osv"]
 [ext_resource type="Script" path="res://ui/ui_scenes/main_menu/main_menu.gd" id="1_qlt1c"]
 [ext_resource type="Theme" uid="uid://b3x8x201hf367" path="res://ui/new_theme.tres" id="2_05vcu"]
+[ext_resource type="AudioStream" uid="uid://45n3376tgngm" path="res://ui/music_menu/exploration.mp3" id="4_tupg7"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -79,6 +80,11 @@ layout_mode = 2
 size_flags_vertical = 3
 
 [node name="BG" parent="." instance=ExtResource("1_77osv")]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_tupg7")
+volume_db = -10.0
+autoplay = true
 
 [connection signal="pressed" from="Panel/VBoxContainer/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="Panel/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
