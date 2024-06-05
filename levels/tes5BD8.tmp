@@ -1,4 +1,4 @@
-[gd_scene load_steps=77 format=3 uid="uid://ckiccqk0x5lb3"]
+[gd_scene load_steps=76 format=3 uid="uid://ckiccqk0x5lb3"]
 
 [ext_resource type="PackedScene" uid="uid://jyjuvgel177t" path="res://characters/player/player.tscn" id="1_6coc8"]
 [ext_resource type="Texture2D" uid="uid://dds41c603bxxp" path="res://sprites/world/tilesets/ground/Tilemap_Flat.png" id="2_vmkgw"]
@@ -36,7 +36,6 @@
 [ext_resource type="Script" path="res://levels/tile_map.gd" id="32_um5m5"]
 [ext_resource type="PackedScene" uid="uid://cwcdmtqr0acs8" path="res://characters/enemies/goblins/goblin.tscn" id="35_vx7gw"]
 [ext_resource type="PackedScene" uid="uid://w3oc8y7dw87v" path="res://characters/enemies/goblins/tnt_goblin.tscn" id="36_b5a64"]
-[ext_resource type="PackedScene" uid="uid://dua5k7qars2wt" path="res://area/blast_area.tscn" id="37_mkrs3"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ku7id"]
 texture = ExtResource("2_vmkgw")
@@ -14360,7 +14359,5 @@ detection_area_next_layer = 27
 position = Vector2(272, 99)
 
 [node name="TntGoblin" parent="." instance=ExtResource("36_b5a64")]
-position = Vector2(788, 615)
-
-[node name="BlastArea" parent="." instance=ExtResource("37_mkrs3")]
-position = Vector2(383, 609)
+position = Vector2(1048, 475)
+is_alive = true

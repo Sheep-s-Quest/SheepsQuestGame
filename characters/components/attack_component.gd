@@ -12,7 +12,7 @@ signal attack_overed
 
 var is_attack_possible: bool = true
 var _attack_area: DamageAreaWithOwner = null
-var _damage_area_scene = preload("res://characters/components/damage_area_with_owner.tscn")
+var _damage_area_scene = preload("res://area/damage_area_with_owner.tscn")
 
 
 @onready var attack_creation_timer: Timer = $AttackCreationTimer
