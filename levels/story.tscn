@@ -1,4 +1,4 @@
-[gd_scene load_steps=90 format=3 uid="uid://heqf1no7i8iq"]
+[gd_scene load_steps=92 format=3 uid="uid://heqf1no7i8iq"]
 
 [ext_resource type="Script" path="res://levels/story.gd" id="1_hln1c"]
 [ext_resource type="Texture2D" uid="uid://dds41c603bxxp" path="res://sprites/world/tilesets/ground/Tilemap_Flat.png" id="1_xwoce"]
@@ -31,6 +31,8 @@
 [ext_resource type="Texture2D" uid="uid://coe3q1hosd22f" path="res://sprites/world/resources/Sheep/HappySheep_Idle.png" id="29_n32vt"]
 [ext_resource type="PackedScene" uid="uid://w3oc8y7dw87v" path="res://characters/enemies/goblins/tnt_goblin.tscn" id="30_kijkp"]
 [ext_resource type="Texture2D" uid="uid://dpjsdltubsohg" path="res://sprites/enemies/goblins/Goblin_Boss.png" id="31_d8627"]
+[ext_resource type="AudioStream" uid="uid://su23ofxhnad7" path="res://sfx/story_music.mp3" id="32_iwtsi"]
+[ext_resource type="AudioStream" uid="uid://b37217o0qbw4" path="res://sfx/running.mp3" id="33_ikjd3"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ku7id"]
 texture = ExtResource("1_xwoce")
@@ -14688,6 +14690,32 @@ gravity = Vector3(0, 0, 0)
 scale_min = 0.5
 alpha_curve = SubResource("CurveTexture_rtp36")
 
+[sub_resource type="Animation" id="Animation_sc5k2"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_wneym"]
+resource_name = "move"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [7, 8, 9, 10, 11, 12]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0jvw7"]
+_data = {
+"RESET": SubResource("Animation_sc5k2"),
+"move": SubResource("Animation_wneym")
+}
+
 [sub_resource type="Animation" id="Animation_nsoj1"]
 length = 30.0
 tracks/0/type = "value"
@@ -14898,37 +14926,73 @@ tracks/13/keys = {
 "update": 0,
 "values": [Color(0, 0, 0, 0), Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
 }
+tracks/14/type = "audio"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("AudioStreamPlayer")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"clips": [{
+"end_offset": 94.091,
+"start_offset": 1.0,
+"stream": ExtResource("32_iwtsi")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/14/use_blend = true
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("AudioStreamPlayer:volume_db")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(34, 35),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-10.0, -80.0]
+}
+tracks/16/type = "audio"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("Game")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"clips": [{
+"end_offset": 43.0307,
+"start_offset": 0.0,
+"stream": ExtResource("33_ikjd3")
+}, {
+"end_offset": 42.6093,
+"start_offset": 0.421374,
+"stream": ExtResource("33_ikjd3")
+}, {
+"end_offset": 44.1192,
+"start_offset": 0.0,
+"stream": ExtResource("33_ikjd3")
+}, {
+"end_offset": 39.133,
+"start_offset": 0.0,
+"stream": ExtResource("33_ikjd3")
+}, {
+"end_offset": 42.1177,
+"start_offset": 0.0,
+"stream": ExtResource("33_ikjd3")
+}, {
+"end_offset": 41.591,
+"start_offset": 0.0,
+"stream": ExtResource("33_ikjd3")
+}],
+"times": PackedFloat32Array(7.9, 12.0214, 15, 18, 26, 30.5)
+}
+tracks/16/use_blend = true
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_whj5e"]
 _data = {
 "RESET": SubResource("Animation_nsoj1"),
 "story": SubResource("Animation_wv2au")
-}
-
-[sub_resource type="Animation" id="Animation_wneym"]
-resource_name = "move"
-length = 0.6
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [7, 8, 9, 10, 11, 12]
-}
-
-[sub_resource type="Animation" id="Animation_sc5k2"]
-length = 0.001
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_0jvw7"]
-_data = {
-"RESET": SubResource("Animation_sc5k2"),
-"move": SubResource("Animation_wneym")
 }
 
 [node name="Story" type="Node2D"]
@@ -15118,12 +15182,6 @@ process_material = SubResource("ParticleProcessMaterial_rw806")
 texture = ExtResource("20_5a0gi")
 lifetime = 400.0
 explosiveness = 0.98
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_whj5e")
-}
-autoplay = "story"
 
 [node name="township_destroyed" type="Node2D" parent="."]
 visible = false
@@ -15318,7 +15376,7 @@ position = Vector2(1462, 745)
 script = null
 
 [node name="Sprite2D" parent="Goblin" index="0"]
-frame = 8
+frame = 7
 
 [node name="TntGoblin" parent="." instance=ExtResource("30_kijkp")]
 z_index = 6
@@ -15326,7 +15384,7 @@ position = Vector2(1405, 724)
 script = null
 
 [node name="Sprite2D" parent="TntGoblin" index="0"]
-frame = 12
+frame = 7
 
 [node name="Boss" type="Node2D" parent="."]
 z_index = 2
@@ -15338,7 +15396,7 @@ y_sort_enabled = true
 texture = ExtResource("31_d8627")
 hframes = 7
 vframes = 4
-frame = 9
+frame = 7
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Boss"]
 libraries = {
@@ -15354,7 +15412,17 @@ offset_bottom = -7546.0
 scale = Vector2(300, 300)
 color = Color(0, 0, 0, 0)
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_whj5e")
+}
+autoplay = "story"
+
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+volume_db = -15.0
+
+[node name="Game" type="AudioStreamPlayer" parent="."]
+volume_db = 15.0
 
 [editable path="Goblin"]
 [editable path="TntGoblin"]

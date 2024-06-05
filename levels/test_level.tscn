@@ -36,8 +36,8 @@
 [ext_resource type="Texture2D" uid="uid://drtw6syww2xwr" path="res://sprites/world/tilesets/Collision.png" id="29_fachk"]
 [ext_resource type="Script" path="res://levels/tile_map.gd" id="32_um5m5"]
 [ext_resource type="PackedScene" uid="uid://cwcdmtqr0acs8" path="res://characters/enemies/goblins/goblin.tscn" id="35_vx7gw"]
-[ext_resource type="PackedScene" path="res://characters/enemies/goblins/tnt_goblin.tscn" id="36_b5a64"]
-[ext_resource type="PackedScene" path="res://area/blast_area.tscn" id="37_mkrs3"]
+[ext_resource type="PackedScene" uid="uid://w3oc8y7dw87v" path="res://characters/enemies/goblins/tnt_goblin.tscn" id="36_b5a64"]
+[ext_resource type="PackedScene" uid="uid://dua5k7qars2wt" path="res://area/blast_area.tscn" id="37_mkrs3"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ku7id"]
 texture = ExtResource("2_vmkgw")
