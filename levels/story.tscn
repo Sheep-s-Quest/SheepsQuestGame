@@ -1,9 +1,9 @@
-[gd_scene load_steps=92 format=3 uid="uid://heqf1no7i8iq"]
+[gd_scene load_steps=92 format=3 uid="uid://dy6xn3ymp8daf"]
 
 [ext_resource type="Script" path="res://levels/story.gd" id="1_hln1c"]
 [ext_resource type="Texture2D" uid="uid://dds41c603bxxp" path="res://sprites/world/tilesets/ground/Tilemap_Flat.png" id="1_xwoce"]
 [ext_resource type="Texture2D" uid="uid://d22rqtpyjq7ix" path="res://sprites/world/tilesets/ground/Tilemap_Elevation.png" id="2_8qjoy"]
-[ext_resource type="Texture2D" uid="uid://dqprjt2qrybsx" path="res://sprites/world/deco/merge_deco.png" id="3_t0xqm"]
+[ext_resource type="Texture2D" path="res://sprites/world/deco/merge_deco.png" id="3_t0xqm"]
 [ext_resource type="Texture2D" uid="uid://cl380abl0qtk0" path="res://sprites/world/buildings/house/merge_house.png" id="4_ol25i"]
 [ext_resource type="Texture2D" uid="uid://8t7hlhwmvwh5" path="res://sprites/world/tilesets/ground/Shadows.png" id="4_u8hf6"]
 [ext_resource type="Texture2D" uid="uid://cqdduxy4lkm8q" path="res://sprites/world/resources/Trees/Tree.png" id="5_mnlay"]
@@ -19,7 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://dlgf1cbx08lye" path="res://sprites/world/tilesets/water/rocks/Rocks_03.png" id="13_7dyao"]
 [ext_resource type="Texture2D" uid="uid://clyuh6dlyk65k" path="res://sprites/world/tilesets/water/rocks/Rocks_04.png" id="14_8apwg"]
 [ext_resource type="Script" path="res://levels/tile_map.gd" id="15_3xwpx"]
-[ext_resource type="Texture2D" uid="uid://bxceqa6beg88c" path="res://sprites/world/deco/fog.png" id="20_5a0gi"]
+[ext_resource type="Texture2D" path="res://sprites/world/deco/fog.png" id="20_5a0gi"]
 [ext_resource type="Texture2D" uid="uid://dhll2itbsrhp3" path="res://sprites/characters/Warrior_Blue.png" id="21_tocba"]
 [ext_resource type="PackedScene" uid="uid://cl4wkaeoe2nj6" path="res://characters/components/health_component.tscn" id="22_g4wma"]
 [ext_resource type="PackedScene" uid="uid://ohusb04dggx7" path="res://characters/components/hitbox_component.tscn" id="23_k2dmb"]
@@ -30,9 +30,9 @@
 [ext_resource type="PackedScene" uid="uid://cwcdmtqr0acs8" path="res://characters/enemies/goblins/goblin.tscn" id="29_k0i1u"]
 [ext_resource type="Texture2D" uid="uid://coe3q1hosd22f" path="res://sprites/world/resources/Sheep/HappySheep_Idle.png" id="29_n32vt"]
 [ext_resource type="PackedScene" uid="uid://w3oc8y7dw87v" path="res://characters/enemies/goblins/tnt_goblin.tscn" id="30_kijkp"]
-[ext_resource type="Texture2D" uid="uid://dpjsdltubsohg" path="res://sprites/enemies/goblins/Goblin_Boss.png" id="31_d8627"]
-[ext_resource type="AudioStream" uid="uid://su23ofxhnad7" path="res://sfx/story_music.mp3" id="32_iwtsi"]
-[ext_resource type="AudioStream" uid="uid://b37217o0qbw4" path="res://sfx/running.mp3" id="33_ikjd3"]
+[ext_resource type="Texture2D" path="res://sprites/enemies/goblins/Goblin_Boss.png" id="31_d8627"]
+[ext_resource type="AudioStream" path="res://sfx/story_music.mp3" id="32_iwtsi"]
+[ext_resource type="AudioStream" path="res://sfx/running.mp3" id="33_ikjd3"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ku7id"]
 texture = ExtResource("1_xwoce")
@@ -14825,7 +14825,7 @@ tracks/5/path = NodePath("township:visible")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(-0.4, 18.8, 19),
+"times": PackedFloat32Array(0.1, 18.8, 19),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [true, true, false]
@@ -14837,7 +14837,7 @@ tracks/6/path = NodePath("township_destroyed:visible")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(-0.4, 18.8, 19),
+"times": PackedFloat32Array(0.2, 18.8, 19),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [false, false, true]
@@ -15074,7 +15074,7 @@ metadata/_edit_lock_ = true
 
 [node name="Sheep" type="Node2D" parent="."]
 z_index = 3
-position = Vector2(2646, 724)
+position = Vector2(-543, 89)
 script = ExtResource("28_j45sg")
 
 [node name="Sprite2D" type="Sprite2D" parent="Sheep"]
@@ -15184,6 +15184,7 @@ lifetime = 400.0
 explosiveness = 0.98
 
 [node name="township_destroyed" type="Node2D" parent="."]
+visible = false
 z_index = 3
 y_sort_enabled = true
 position = Vector2(878, -189)
@@ -15279,7 +15280,6 @@ vframes = 2
 frame = 2
 
 [node name="township" type="Node2D" parent="."]
-visible = false
 z_index = 3
 y_sort_enabled = true
 position = Vector2(878, -189)
@@ -15372,23 +15372,23 @@ vframes = 2
 
 [node name="Goblin" parent="." instance=ExtResource("29_k0i1u")]
 z_index = 7
-position = Vector2(2436, 749)
+position = Vector2(1462, 745)
 script = null
 
 [node name="Sprite2D" parent="Goblin" index="0"]
-frame = 8
+frame = 10
 
 [node name="TntGoblin" parent="." instance=ExtResource("30_kijkp")]
 z_index = 6
-position = Vector2(2390, 726)
+position = Vector2(1405, 724)
 script = null
 
 [node name="Sprite2D" parent="TntGoblin" index="0"]
-frame = 8
+frame = 10
 
 [node name="Boss" type="Node2D" parent="."]
 z_index = 2
-position = Vector2(2521, 678)
+position = Vector2(1576, 684)
 
 [node name="Sprite2D" type="Sprite2D" parent="Boss"]
 z_index = 3
@@ -15396,7 +15396,7 @@ y_sort_enabled = true
 texture = ExtResource("31_d8627")
 hframes = 7
 vframes = 4
-frame = 8
+frame = 10
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Boss"]
 libraries = {
@@ -15410,7 +15410,7 @@ offset_top = -7596.0
 offset_right = -6852.0
 offset_bottom = -7546.0
 scale = Vector2(300, 300)
-color = Color(0, 0, 0, 1)
+color = Color(0, 0, 0, 0)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -15419,7 +15419,7 @@ libraries = {
 autoplay = "story"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-volume_db = -80.0
+volume_db = -10.0
 
 [node name="Game" type="AudioStreamPlayer" parent="."]
 volume_db = 15.0
