@@ -14757,7 +14757,7 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id="Animation_wv2au"]
 resource_name = "story"
-length = 36.0
+length = 35.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -15074,7 +15074,7 @@ metadata/_edit_lock_ = true
 
 [node name="Sheep" type="Node2D" parent="."]
 z_index = 3
-position = Vector2(-543, 89)
+position = Vector2(2646, 724)
 script = ExtResource("28_j45sg")
 
 [node name="Sprite2D" type="Sprite2D" parent="Sheep"]
@@ -15184,7 +15184,6 @@ lifetime = 400.0
 explosiveness = 0.98
 
 [node name="township_destroyed" type="Node2D" parent="."]
-visible = false
 z_index = 3
 y_sort_enabled = true
 position = Vector2(878, -189)
@@ -15280,6 +15279,7 @@ vframes = 2
 frame = 2
 
 [node name="township" type="Node2D" parent="."]
+visible = false
 z_index = 3
 y_sort_enabled = true
 position = Vector2(878, -189)
@@ -15372,23 +15372,23 @@ vframes = 2
 
 [node name="Goblin" parent="." instance=ExtResource("29_k0i1u")]
 z_index = 7
-position = Vector2(1462, 745)
+position = Vector2(2436, 749)
 script = null
 
 [node name="Sprite2D" parent="Goblin" index="0"]
-frame = 7
+frame = 8
 
 [node name="TntGoblin" parent="." instance=ExtResource("30_kijkp")]
 z_index = 6
-position = Vector2(1405, 724)
+position = Vector2(2390, 726)
 script = null
 
 [node name="Sprite2D" parent="TntGoblin" index="0"]
-frame = 7
+frame = 8
 
 [node name="Boss" type="Node2D" parent="."]
 z_index = 2
-position = Vector2(1576, 684)
+position = Vector2(2521, 678)
 
 [node name="Sprite2D" type="Sprite2D" parent="Boss"]
 z_index = 3
@@ -15396,7 +15396,7 @@ y_sort_enabled = true
 texture = ExtResource("31_d8627")
 hframes = 7
 vframes = 4
-frame = 7
+frame = 8
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Boss"]
 libraries = {
@@ -15410,7 +15410,7 @@ offset_top = -7596.0
 offset_right = -6852.0
 offset_bottom = -7546.0
 scale = Vector2(300, 300)
-color = Color(0, 0, 0, 0)
+color = Color(0, 0, 0, 1)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -15419,7 +15419,7 @@ libraries = {
 autoplay = "story"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-volume_db = -15.0
+volume_db = -80.0
 
 [node name="Game" type="AudioStreamPlayer" parent="."]
 volume_db = 15.0
