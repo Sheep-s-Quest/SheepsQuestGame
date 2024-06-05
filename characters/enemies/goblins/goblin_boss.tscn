@@ -269,6 +269,3 @@ attack_area_size = Vector2(200, 100)
 
 [node name="RangedAttackComponent" parent="." index="7" node_paths=PackedStringArray("attack_emmiter")]
 attack_emmiter = NodePath("..")
-
-[node name="CollisionShape2D" parent="DetectionAreaComponent" index="0"]
-visible = false
