@@ -10,10 +10,10 @@
 [ext_resource type="PackedScene" uid="uid://isaf1h5pxxra" path="res://characters/components/navigation_component.tscn" id="7_cx6ht"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wqbq6"]
-radius = 12.0416
+radius = 22.2036
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_suqk2"]
-radius = 31.0161
+radius = 41.0488
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8bw01"]
 radius = 248.002

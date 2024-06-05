@@ -36,7 +36,7 @@
 [ext_resource type="Script" path="res://levels/tile_map.gd" id="32_um5m5"]
 [ext_resource type="PackedScene" uid="uid://cwcdmtqr0acs8" path="res://characters/enemies/goblins/goblin.tscn" id="35_vx7gw"]
 [ext_resource type="PackedScene" uid="uid://w3oc8y7dw87v" path="res://characters/enemies/goblins/tnt_goblin.tscn" id="36_b5a64"]
-[ext_resource type="PackedScene" uid="uid://dua5k7qars2wt" path="res://area/blast_area.tscn" id="37_mkrs3"]
+[ext_resource type="PackedScene" uid="uid://b421oh1x1apba" path="res://characters/enemies/goblins/goblin_boss.tscn" id="37_cc5j2"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ku7id"]
 texture = ExtResource("2_vmkgw")
@@ -14360,7 +14360,7 @@ detection_area_next_layer = 27
 position = Vector2(272, 99)
 
 [node name="TntGoblin" parent="." instance=ExtResource("36_b5a64")]
-position = Vector2(788, 615)
+position = Vector2(738, 624)
 
-[node name="BlastArea" parent="." instance=ExtResource("37_mkrs3")]
-position = Vector2(383, 609)
+[node name="GoblinBoss" parent="." instance=ExtResource("37_cc5j2")]
+position = Vector2(140, 313)

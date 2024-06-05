@@ -1,4 +1,4 @@
-class_name TntGoblin
+class_name GoblinBoss
 extends RangeEnemy
 
 func _ready():
@@ -29,7 +29,7 @@ func _play_animation() -> void:
 				animation_player.play("walk")
 			else:
 				animation_player.play("walk_flipped_h")
-		ACTION_STATE.ATTACK, ACTION_STATE.RANGE_ATTACK:
+		ACTION_STATE.ATTACK:
 			match _look_direction:
 				LOOK_DIRECTION.RIGHT:
 					animation_player.play("attack")
@@ -40,3 +40,14 @@ func _play_animation() -> void:
 						animation_player.play("attack_flipped_h")
 					else:
 						animation_player.play("attack")
+		ACTION_STATE.RANGE_ATTACK:
+			match _look_direction:
+				LOOK_DIRECTION.RIGHT:
+					animation_player.play("ranged_attack")
+				LOOK_DIRECTION.LEFT:
+					animation_player.play("ranged_attack_flipped_h")
+				LOOK_DIRECTION.DOWN, LOOK_DIRECTION.UP:
+					if !_is_sprite_flipped_h:
+						animation_player.play("ranged_attack_flipped_h")
+					else:
+						animation_player.play("ranged_attack")
