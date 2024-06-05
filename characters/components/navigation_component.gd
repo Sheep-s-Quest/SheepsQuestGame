@@ -40,5 +40,5 @@ func _set_navigation_target(target: Node2D):
 	target_position = position
 
 
-func _used_stairs(stairs_area: StairsArea):
+func _used_stairs(stairs_area: Node2D):
 	_set_navigation_target(stairs_area)
