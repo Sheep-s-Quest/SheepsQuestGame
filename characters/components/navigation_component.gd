@@ -29,7 +29,8 @@ func check_distance():
 
 
 func _ready():
-	for stairs_area in _stairs_area_list:
+	if(!_stairs_area_list.is_empty()):
+		for stairs_area in _stairs_area_list:
 			stairs_area.used_stairs.connect(_used_stairs)
 
 
@@ -40,5 +41,5 @@ func _set_navigation_target(target: Node2D):
 	target_position = position
 
 
-func _used_stairs(stairs_area: StairsArea):
+func _used_stairs(stairs_area: Node2D):
 	_set_navigation_target(stairs_area)

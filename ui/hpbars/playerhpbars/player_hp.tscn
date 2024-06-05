@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://beulg5y8vdyhr"]
+
+[ext_resource type="Texture2D" uid="uid://dvtal65p4th21" path="res://sprites/characters/hpbar/player_under.png" id="1_4b18r"]
+[ext_resource type="Texture2D" uid="uid://dmcfdi1lla04r" path="res://sprites/characters/hpbar/player_progress.png" id="3_u73wm"]
+
+[node name="PlayerHUD" type="CanvasLayer"]
+
+[node name="HPBar" type="TextureProgressBar" parent="."]
+self_modulate = Color(0.890196, 0.937255, 0.752941, 0.670588)
+z_index = 1
+offset_left = 16.0
+offset_top = 14.0
+offset_right = 258.0
+offset_bottom = 38.0
+max_value = 300.0
+value = 300.0
+nine_patch_stretch = true
+texture_under = ExtResource("1_4b18r")
+texture_progress = ExtResource("3_u73wm")
+tint_progress = Color(0.996078, 0.172549, 0, 1)

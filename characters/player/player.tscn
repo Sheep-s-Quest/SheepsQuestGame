@@ -7,6 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://bwrxcbrwgj8ym" path="res://characters/components/detection_component.tscn" id="5_33ccx"]
 [ext_resource type="PackedScene" uid="uid://coagu8sx2pner" path="res://characters/components/attack_component.tscn" id="6_yy7vp"]
 [ext_resource type="PackedScene" uid="uid://b7iw2osuqd3c0" path="res://characters/components/velocity_component.tscn" id="7_nd1wj"]
+[ext_resource type="PackedScene" uid="uid://beulg5y8vdyhr" path="res://ui/hpbars/playerhpbars/player_hp.tscn" id="8_rfq6w"]
+[ext_resource type="Script" path="res://ui/hpbars/playerhpbars/player_hp.gd" id="9_dvvek"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rxw80"]
 radius = 12.1655
@@ -495,3 +497,10 @@ attack_cooldown = 0.5
 moveable = NodePath("..")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+limit_left = -127
+limit_top = -188
+limit_right = 1473
+limit_bottom = 835
+
+[node name="PlayerHP" parent="." instance=ExtResource("8_rfq6w")]
+script = ExtResource("9_dvvek")

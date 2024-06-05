@@ -5,8 +5,8 @@ func _ready():
 	_init_detection_area()
 	_init_health_system()
 	_init_attack_system()
-	
-	
+
+
 func _physics_process(_delta) -> void:
 	match _current_state:
 		ACTION_STATE.ATTACK:
@@ -14,6 +14,7 @@ func _physics_process(_delta) -> void:
 		_:
 			_handle_default_state()
 			_play_animation()
+
 
 func _play_animation() -> void:
 	match _current_state:
