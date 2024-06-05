@@ -1,6 +1,7 @@
-[gd_scene load_steps=75 format=3 uid="uid://ckiccqk0x5lb3"]
+[gd_scene load_steps=78 format=3 uid="uid://ckiccqk0x5lb3"]
 
 [ext_resource type="PackedScene" uid="uid://jyjuvgel177t" path="res://characters/player/player.tscn" id="1_6coc8"]
+[ext_resource type="PackedScene" uid="uid://ihsec4gesy6t" path="res://levels/manager.tscn" id="1_fdaik"]
 [ext_resource type="Texture2D" uid="uid://dds41c603bxxp" path="res://sprites/world/tilesets/ground/Tilemap_Flat.png" id="2_vmkgw"]
 [ext_resource type="Texture2D" uid="uid://d22rqtpyjq7ix" path="res://sprites/world/tilesets/ground/Tilemap_Elevation.png" id="3_4fcyb"]
 [ext_resource type="Texture2D" uid="uid://8t7hlhwmvwh5" path="res://sprites/world/tilesets/ground/Shadows.png" id="4_0ewfo"]
@@ -35,6 +36,8 @@
 [ext_resource type="Texture2D" uid="uid://drtw6syww2xwr" path="res://sprites/world/tilesets/Collision.png" id="29_fachk"]
 [ext_resource type="Script" path="res://levels/tile_map.gd" id="32_um5m5"]
 [ext_resource type="PackedScene" uid="uid://cwcdmtqr0acs8" path="res://characters/enemies/goblins/goblin.tscn" id="35_vx7gw"]
+[ext_resource type="PackedScene" path="res://characters/enemies/goblins/tnt_goblin.tscn" id="36_b5a64"]
+[ext_resource type="PackedScene" path="res://area/blast_area.tscn" id="37_mkrs3"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ku7id"]
 texture = ExtResource("2_vmkgw")
@@ -14279,7 +14282,11 @@ sources/60 = SubResource("TileSetAtlasSource_tumvm")
 sources/10 = SubResource("TileSetAtlasSource_il31u")
 
 [node name="GameLevel" type="Node2D"]
+process_mode = 1
 y_sort_enabled = true
+
+[node name="Manager" parent="." instance=ExtResource("1_fdaik")]
+process_mode = 3
 
 [node name="Player" parent="." instance=ExtResource("1_6coc8")]
 position = Vector2(313, 630)
@@ -14356,3 +14363,9 @@ detection_area_next_layer = 27
 
 [node name="Goblin" parent="." instance=ExtResource("35_vx7gw")]
 position = Vector2(272, 99)
+
+[node name="TntGoblin" parent="." instance=ExtResource("36_b5a64")]
+position = Vector2(788, 615)
+
+[node name="BlastArea" parent="." instance=ExtResource("37_mkrs3")]
+position = Vector2(383, 609)

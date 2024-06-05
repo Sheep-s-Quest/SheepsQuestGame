@@ -10,12 +10,11 @@ extends Node2D
 @onready var walking_sound: AudioStreamPlayer2D = $WalkingSound
 
 func move(direction: Vector2) -> void:
-	moveable.velocity = direction * move_speed
-	moveable.move_and_slide()
 	if impulse != Vector2.ZERO:
 		moveable.move_and_collide(impulse)
 		impulse *= impulse_k
-	
+	moveable.velocity = direction * move_speed
+	moveable.move_and_slide()
 	if moveable.velocity != Vector2.ZERO and not walking_sound.playing:
 		walking_sound.play()
 

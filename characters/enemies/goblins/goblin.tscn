@@ -10,6 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://coagu8sx2pner" path="res://characters/components/attack_component.tscn" id="6_sxaqw"]
 [ext_resource type="AudioStream" uid="uid://fnl0fanq7q71" path="res://sfx/goblin_swing.wav" id="7_6ifok"]
 [ext_resource type="PackedScene" uid="uid://dhnk4lheff3t4" path="res://characters/components/detection_area_component.tscn" id="7_1076q"]
+[ext_resource type="PackedScene" uid="uid://ch7o0a0pxkwpn" path="res://ui/hpbars/mobhpbar/mob_hp_bar.tscn" id="8_mxjl7"]
+[ext_resource type="Script" path="res://ui/hpbars/mobhpbar/mob_hp_bar.gd" id="9_v11eo"]
 [ext_resource type="PackedScene" uid="uid://isaf1h5pxxra" path="res://characters/components/navigation_component.tscn" id="8_3tm52"]
 
 [sub_resource type="Animation" id="Animation_mbbtw"]
@@ -297,4 +299,9 @@ collision_mask = 16777216
 position = Vector2(0, -30)
 shape = SubResource("CircleShape2D_ou1dh")
 
+[node name="MobHpBar" parent="." instance=ExtResource("8_mxjl7")]
+z_index = 1
+position = Vector2(0, -87)
+scale = Vector2(0.3, 0.3)
+script = ExtResource("9_v11eo")
 [node name="NavigationComponent" parent="." instance=ExtResource("8_3tm52")]

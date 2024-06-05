@@ -8,28 +8,13 @@ func _ready():
 
 
 func _physics_process(_delta) -> void:
-	if _current_state == ACTION_STATE.ATTACK:
-		return
-	
-	if in_chase and player and is_alive:
-		navigation.set_target(player, self)
-		var direction = to_local(navigation.get_navigation_path()).normalized()
-		_update_look_direction_to_point(direction)
-		
-		if position.distance_to(player.position) >= attack_component.calculate_attack_range():
-			velocity_component.move(direction)
-			_current_state = ACTION_STATE.WALK
-		else:
-			if attack_component.is_attack_possible:
-				_current_state = ACTION_STATE.ATTACK
-				attack()
-			else:
-				_current_state = ACTION_STATE.IDLE
-		navigation.check_distance()
-	else:
-		_current_state = ACTION_STATE.IDLE
-	
-	_play_animation()
+	match _current_state:
+		ACTION_STATE.ATTACK:
+			return
+		_:
+			_handle_default_state()
+			_play_animation()
+
 
 func _play_animation() -> void:
 	match _current_state:

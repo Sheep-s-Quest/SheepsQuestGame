@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://d2e254apjpxgl"]
+
+[ext_resource type="PackedScene" uid="uid://bkx6e4ugrtcs3" path="res://characters/attacks/ranged_attack.tscn" id="1_358mu"]
+[ext_resource type="Texture2D" uid="uid://tjjpu3psejdd" path="res://sprites/items/Dynamite.png" id="2_lwep5"]
+[ext_resource type="Script" path="res://characters/attacks/throwed_dynamite.gd" id="2_sfhmf"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_puur8"]
+radius = 22.2036
+
+[node name="ThrowedDynamite" instance=ExtResource("1_358mu")]
+mass = 0.5
+script = ExtResource("2_sfhmf")
+sprite_rotation = 0.01
+damage = 50.0
+live_time = 1.5
+
+[node name="CollisionShape2D" parent="." index="0"]
+shape = SubResource("CircleShape2D_puur8")
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("2_lwep5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageableComponent" index="0"]
+shape = SubResource("CircleShape2D_puur8")
+debug_color = Color(0.853564, 0.366409, 0.118533, 0.42)
+
+[node name="BeforeDamageCollisionTimer" type="Timer" parent="." index="5"]

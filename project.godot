@@ -11,13 +11,17 @@ config_version=5
 [application]
 
 config/name="Sheep's Quest"
-run/main_scene="res://levels/test_level.tscn"
+run/main_scene="res://UI/ui_scenes/main_menu/main_menu.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
 
 [filesystem]
 
 import/blender/enabled=false
+[display]
+
+mouse_cursor/custom_image="res://sprites/ui/01.png"
+mouse_cursor/custom_image_hotspot=Vector2(22, 15)
 
 [input]
 
@@ -44,6 +48,11 @@ right={
 attack={
 "deadzone": 0.5,
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":90,"key_label":0,"unicode":122,"echo":false,"script":null)
+]
+}
+block={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":88,"key_label":0,"unicode":120,"echo":false,"script":null)
 ]
 }
 
