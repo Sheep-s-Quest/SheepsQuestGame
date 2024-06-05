@@ -1,9 +1,11 @@
 class_name Player
 extends BasicEntity
 
+
 func _ready():
 	_init_health_system()
 	_init_attack_system()
+
 
 func _physics_process(_delta: float) -> void:
 	match _current_state:
@@ -76,6 +78,7 @@ func _play_animation() -> void:
 					animation_player.play("attack_1")
 				LOOK_DIRECTION.LEFT:
 					animation_player.play("attack_1_flipped_h")
+
 		ACTION_STATE.BLOCK:
 				match _look_direction:
 					LOOK_DIRECTION.UP:

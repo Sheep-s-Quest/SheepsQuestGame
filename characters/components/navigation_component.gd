@@ -29,7 +29,8 @@ func check_distance():
 
 
 func _ready():
-	for stairs_area in _stairs_area_list:
+	if(!_stairs_area_list.is_empty()):
+		for stairs_area in _stairs_area_list:
 			stairs_area.used_stairs.connect(_used_stairs)
 
 
