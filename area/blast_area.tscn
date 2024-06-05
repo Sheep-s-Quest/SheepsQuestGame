@@ -1,0 +1,52 @@
+[gd_scene load_steps=6 format=3 uid="uid://dua5k7qars2wt"]
+
+[ext_resource type="Script" path="res://area/blast_area.gd" id="1_3k6co"]
+[ext_resource type="Texture2D" uid="uid://c5ihum24l7oni" path="res://sprites/effects/Explosions.png" id="2_88mii"]
+
+[sub_resource type="Animation" id="Animation_d0th4"]
+resource_name = "idle"
+length = 0.90001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bvrbl"]
+_data = {
+"idle": SubResource("Animation_d0th4")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_33gnp"]
+size = Vector2(64, 64)
+
+[node name="BlastArea" type="Area2D"]
+z_index = 1
+y_sort_enabled = true
+collision_layer = 128
+collision_mask = 128
+script = ExtResource("1_3k6co")
+damage = 20.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_bvrbl")
+}
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 1
+y_sort_enabled = true
+texture = ExtResource("2_88mii")
+hframes = 9
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+z_index = 1
+y_sort_enabled = true
+shape = SubResource("RectangleShape2D_33gnp")

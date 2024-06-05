@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://isaf1h5pxxra"]
+
+[ext_resource type="Script" path="res://characters/components/navigation_component.gd" id="1_u04ww"]
+
+[node name="NavigationComponent" type="NavigationAgent2D"]
+debug_enabled = true
+script = ExtResource("1_u04ww")

@@ -1,0 +1,69 @@
+[gd_scene load_steps=11 format=3 uid="uid://cisgvm25r7xvb"]
+
+[ext_resource type="Script" path="res://characters/enemies/enemy.gd" id="1_e5k25"]
+[ext_resource type="PackedScene" uid="uid://b7iw2osuqd3c0" path="res://characters/components/velocity_component.tscn" id="2_gjyy8"]
+[ext_resource type="PackedScene" uid="uid://ohusb04dggx7" path="res://characters/components/hitbox_component.tscn" id="3_gdd2j"]
+[ext_resource type="PackedScene" uid="uid://cl4wkaeoe2nj6" path="res://characters/components/health_component.tscn" id="4_p3l47"]
+[ext_resource type="PackedScene" uid="uid://coagu8sx2pner" path="res://characters/components/attack_component.tscn" id="5_k4fqh"]
+[ext_resource type="PackedScene" uid="uid://dhnk4lheff3t4" path="res://characters/components/detection_area_component.tscn" id="6_pjld8"]
+[ext_resource type="PackedScene" uid="uid://isaf1h5pxxra" path="res://characters/components/navigation_component.tscn" id="7_utv1e"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_80jwg"]
+radius = 12.0416
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_oks6d"]
+radius = 31.0161
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_du0m8"]
+radius = 248.002
+
+[node name="Enemy" type="CharacterBody2D"]
+script = ExtResource("1_e5k25")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 1
+y_sort_enabled = true
+offset = Vector2(0, -30)
+hframes = 7
+vframes = 5
+frame = 17
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+z_index = 99
+y_sort_enabled = true
+shape = SubResource("CircleShape2D_80jwg")
+
+[node name="VelocityComponent" parent="." node_paths=PackedStringArray("moveable") instance=ExtResource("2_gjyy8")]
+move_speed = 150.0
+moveable = NodePath("..")
+impulse_k = 0.2
+
+[node name="HitboxComponent" parent="." instance=ExtResource("3_gdd2j")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+position = Vector2(0, -25)
+shape = SubResource("CircleShape2D_oks6d")
+
+[node name="HealthComponent" parent="." instance=ExtResource("4_p3l47")]
+
+[node name="AttackComponent" parent="." instance=ExtResource("5_k4fqh")]
+z_index = 1
+y_sort_enabled = true
+position = Vector2(0, -30)
+damage = 10.0
+attack_livetime = 0.6
+attack_cooldown = 3.0
+time_before_attack_creatioon = 0.3
+
+[node name="DetectionAreaComponent" parent="." instance=ExtResource("6_pjld8")]
+z_index = 1
+y_sort_enabled = true
+collision_mask = 16777216
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionAreaComponent"]
+position = Vector2(0, -30)
+shape = SubResource("CircleShape2D_du0m8")
+
+[node name="NavigationComponent" parent="." instance=ExtResource("7_utv1e")]
