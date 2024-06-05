@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://w3oc8y7dw87v"]
+[gd_scene load_steps=12 format=3 uid="uid://w3oc8y7dw87v"]
 
 [ext_resource type="PackedScene" uid="uid://cj8bpafdepjwo" path="res://characters/enemies/range_enemy.tscn" id="1_vd623"]
 [ext_resource type="Script" path="res://characters/enemies/goblins/tnt_goblin.gd" id="2_ahwdc"]
 [ext_resource type="Texture2D" uid="uid://gc8w84a1tb1q" path="res://sprites/enemies/goblins/TNT_Red.png" id="2_oocbw"]
+[ext_resource type="AudioStream" uid="uid://cdb7qjnf33fhc" path="res://sfx/goblin_damage.wav" id="4_tsob5"]
 
 [sub_resource type="Animation" id="Animation_6gdap"]
 resource_name = "attack"
@@ -202,6 +203,9 @@ libraries = {
 [node name="VelocityComponent" parent="." index="3" node_paths=PackedStringArray("moveable")]
 move_speed = 100.0
 moveable = NodePath("..")
+
+[node name="HealthComponent" parent="." index="5"]
+damage_received_sound_source = ExtResource("4_tsob5")
 
 [node name="AttackComponent" parent="." index="6" node_paths=PackedStringArray("attack_emmiter")]
 attack_emmiter = NodePath("..")

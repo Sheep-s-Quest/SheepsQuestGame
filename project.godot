@@ -15,13 +15,14 @@ run/main_scene="res://UI/ui_scenes/main_menu/main_menu.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
 
-[filesystem]
-
-import/blender/enabled=false
 [display]
 
 mouse_cursor/custom_image="res://sprites/ui/01.png"
 mouse_cursor/custom_image_hotspot=Vector2(22, 15)
+
+[filesystem]
+
+import/blender/enabled=false
 
 [input]
 
