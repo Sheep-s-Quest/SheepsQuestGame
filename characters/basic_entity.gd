@@ -18,7 +18,6 @@ var _layer_position: LAYER_POSITION = LAYER_POSITION.FIRST_LAYER
 @onready var attack_component: AttackComponent = $AttackComponent
 @onready var velocity_component: VelocityComponent = $VelocityComponent
 
-
 func _init_health_system() -> void:
 	health_component.damaged.connect(_on_damaged)
 	health_component.died.connect(_on_died)
@@ -65,10 +64,22 @@ func _on_attack_overed():
 
 func _on_damaged(damage: float, direction: Vector2) -> void:
 	print(self.name, " took damage: ", damage, " from direction: ", direction, " current HP: ", health_component.hit_points)
+	
 	if health_component.hit_points <= 0:
 		health_component.die()
+		return	
+	_start_blink()
 
 func _on_died() -> void:
 	queue_free()
 
+func _start_blink() -> void:
+	var tween: Tween = get_tree().create_tween()
 
+	var blink_count: int = 5
+	var blink_duration: float = 0.1
+	var original_color: Color = sprite.modulate
+	
+	for i in range(blink_count):
+		tween.tween_property(sprite, "modulate", Color(original_color, 0), blink_duration).set_trans(Tween.TRANS_BOUNCE)
+		tween.tween_property(sprite, "modulate", original_color, blink_duration).set_trans(Tween.TRANS_BOUNCE)

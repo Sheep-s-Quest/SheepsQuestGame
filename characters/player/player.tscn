@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://jyjuvgel177t"]
+[gd_scene load_steps=30 format=3 uid="uid://jyjuvgel177t"]
 
 [ext_resource type="Script" path="res://characters/player/player.gd" id="1_83tmx"]
 [ext_resource type="Texture2D" uid="uid://frn5hft16i1t" path="res://sprites/characters/Warrior_Blue_Shield.png" id="2_8lflm"]
