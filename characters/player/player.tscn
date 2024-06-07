@@ -446,6 +446,7 @@ radius = 16.2788
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 z_index = 1
 script = ExtResource("1_83tmx")
+blink_count = 5
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = 1

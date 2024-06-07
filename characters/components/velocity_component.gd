@@ -10,7 +10,7 @@ func _physics_process(_delta: float) -> void:
 	if impulse != Vector2.ZERO:
 		moveable.move_and_collide(impulse)
 		impulse *= impulse_k
-		
+
 
 func move(direction: Vector2) -> void:
 	moveable.velocity = direction * move_speed

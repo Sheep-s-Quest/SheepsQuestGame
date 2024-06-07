@@ -5,11 +5,15 @@ enum LOOK_DIRECTION {LEFT, RIGHT, UP, DOWN}
 enum ACTION_STATE {IDLE, WALK, ATTACK, RANGE_ATTACK, BLOCK}
 enum LAYER_POSITION {FIRST_LAYER = 1, SECOND_LAYER = 2, THIRD_LAYER = 3}
 
+@export var blink_count: int = 3
+@export var blink_duration: float = 0.1
+
 var _base_damage_layer = 8
 var _is_sprite_flipped_h: bool = false
 var _current_state: ACTION_STATE = ACTION_STATE.IDLE
 var _look_direction: LOOK_DIRECTION = LOOK_DIRECTION.RIGHT
 var _layer_position: LAYER_POSITION = LAYER_POSITION.FIRST_LAYER
+var _is_damageable: bool = true
 
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
@@ -45,6 +49,8 @@ func attack():
 	attack_component.attack(attack_position, damage_layer_position, flip_attack_hitbox)
 
 func take_damage(damage: float, direction: Vector2) -> void:
+	if !_is_damageable:
+		return
 	velocity_component.apply_bounce(damage, direction)
 	if _current_state == ACTION_STATE.BLOCK:
 		var valid_block_direction = Vec2Utils.vector2_to_look_direction(-direction)
@@ -53,18 +59,30 @@ func take_damage(damage: float, direction: Vector2) -> void:
 			print("Attack from: ", LOOK_DIRECTION.keys()[Vec2Utils.vector2_to_look_direction(direction)], " Blocked")
 	health_component.take_damage(damage, direction)
 
+
 func set_layer_position(layer: LAYER_POSITION):
 	_layer_position = layer
 
-func play_animation() -> void:
-	pass
+
+func _start_blink() -> void:
+	var tween: Tween = get_tree().create_tween()
+
+	var original_color: Color = sprite.modulate
+	
+	for i in range(blink_count):
+		tween.tween_property(sprite, "modulate", Color(original_color, 0), blink_duration).set_trans(Tween.TRANS_BOUNCE)
+		tween.tween_property(sprite, "modulate", original_color, blink_duration).set_trans(Tween.TRANS_BOUNCE)
+	tween.finished.connect(_on_immortality_finished)
 
 func _on_attack_overed():
 	_current_state = ACTION_STATE.IDLE
 
+func _on_immortality_finished() -> void:
+	_is_damageable = true
+
 func _on_damaged(damage: float, direction: Vector2) -> void:
 	print(self.name, " took damage: ", damage, " from direction: ", direction, " current HP: ", health_component.hit_points)
-	
+	_is_damageable = false
 	if health_component.hit_points <= 0:
 		health_component.die()
 		return	
@@ -73,13 +91,3 @@ func _on_damaged(damage: float, direction: Vector2) -> void:
 func _on_died() -> void:
 	queue_free()
 
-func _start_blink() -> void:
-	var tween: Tween = get_tree().create_tween()
-
-	var blink_count: int = 5
-	var blink_duration: float = 0.1
-	var original_color: Color = sprite.modulate
-	
-	for i in range(blink_count):
-		tween.tween_property(sprite, "modulate", Color(original_color, 0), blink_duration).set_trans(Tween.TRANS_BOUNCE)
-		tween.tween_property(sprite, "modulate", original_color, blink_duration).set_trans(Tween.TRANS_BOUNCE)
